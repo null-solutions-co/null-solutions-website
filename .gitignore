@@ -1,0 +1,69 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+
+# next.js
+/.next/
+/out/
+next-env.d.ts
+
+# production
+/build
+/dist
+
+# testing
+/coverage
+/playwright-report
+/test-results
+/.playwright-mcp
+
+# misc
+.DS_Store
+*.pem
+*.local
+
+# debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files
+.env
+.env*.local
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+
+# editor
+.idea
+.vscode/*
+!.vscode/extensions.json
+public/_preview/
+
+# Local Netlify folder
+.netlify
+
+# api (ASP.NET Core)
+api/.pgdata/
+api/**/bin/
+api/**/obj/
+api/**/appsettings.Local.json
+api/**/TestResults/
+
+# requested for the public company repo
+node_modules/
+.env
+.env.*
+!.env.example
+dist/
+build/
+.DS_Store

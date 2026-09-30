@@ -1,0 +1,703 @@
+{
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "portfolio": "Portfolio",
+    "about": "About",
+    "contact": "Contact",
+    "portal": "Client portal",
+    "breadcrumb": "Breadcrumb",
+    "menu": "Menu",
+    "close": "Close"
+  },
+  "footer": {
+    "location": "NULL Solutions — Amman",
+    "rights": "All rights reserved",
+    "nav": "Site",
+    "follow": "Find us",
+    "instagram": "Instagram",
+    "email": "Email"
+  },
+  "common": {
+    "loadError": "Could not load this.",
+    "retry": "Try again"
+  },
+  "home": {
+    "headline": "From idea to launch.",
+    "headlineAccent": "launch",
+    "sub": "A team in Amman that builds websites, apps and AI tools, and tests them for security before they go live. You can follow every step of your project in your own client portal.",
+    "ctaPrimary": "Start a project",
+    "ctaSecondary": "See our work",
+    "servicesEyebrow": "what we do",
+    "methodEyebrow": "how we work",
+    "methodTitle": "Your project, step by step",
+    "methodBody": "Ten stages from the first call to support after launch. You can see which one you're in, any time, from your portal.",
+    "ctaTitle": "Got something in mind?",
+    "ctaBody": "Tell us about it in a few lines. We'll get back to you within two working days with how we'd approach it.",
+    "ctaButton": "Get in touch",
+    "workTitle": "Try the work for yourself.",
+    "workLink": "All services",
+    "workNote": "These are sample builds we made to show the work. They aren't client projects.",
+    "workTags": {
+      "S1": "CMS · CATALOGUE · CHECKOUT · PERFORMANCE",
+      "S2": "DASHBOARDS · PERMISSIONS · AUDIT · PORTALS",
+      "S3": "iOS · ANDROID · OFFLINE-TOLERANT · SHIPPED",
+      "S4": "EXTRACTION · CONFIDENCE · CITATIONS · WORKFLOW",
+      "S5": "PIPELINES · WAREHOUSE · DASHBOARDS · TRUST",
+      "S6": "PENTEST · CODE REVIEW · RANKED REPORT · RETEST",
+      "S7": "MONITORING · SIEM · TRIAGE · ON-CALL",
+      "S8": "CLOUD · CI/CD · CONTAINERS · IAC",
+      "S9": "APIS · MIDDLEWARE · WEBHOOKS · REPLAY",
+      "S10": "SLA · MAINTENANCE · PATCHING · UPTIME"
+    },
+    "workIntro": "Each card shows the kind of thing that line of work produces. Click one to open it and use it.",
+    "demo": {
+      "open": "Open the sample",
+      "hint": "Try it",
+      "live": "Sample build · click around",
+      "close": "Close",
+      "ctaLine": "Want something like this for your business?",
+      "cta": "Talk to us",
+      "loading": "Loading…"
+    },
+    "portalEyebrow": "client portal",
+    "portalTitle": "Follow your project without asking",
+    "portalBody": "Every client gets a private access code. It opens your project: the stage it's at, what's done, what's left, your invoices and every file we've sent. It updates as we work.",
+    "portalCaption": "This is what our clients see when they open their project.",
+    "portalCta": "Open your project",
+    "stages": {
+      "G0": {
+        "name": "First call",
+        "line": "We listen, ask questions and check we're the right fit."
+      },
+      "G1": {
+        "name": "Discovery",
+        "line": "We look at how you work today and what needs to change."
+      },
+      "G2": {
+        "name": "Scope and quote",
+        "line": "A clear list of what we'll build, with a price and a timeline."
+      },
+      "G3": {
+        "name": "Plan",
+        "line": "We break the work into milestones you can follow."
+      },
+      "G4": {
+        "name": "Design",
+        "line": "You see and approve the screens before we build them."
+      },
+      "G5": {
+        "name": "Build",
+        "line": "We build in short rounds and show you progress as we go."
+      },
+      "G6": {
+        "name": "Testing",
+        "line": "Everything is tested on real devices, with real data."
+      },
+      "G7": {
+        "name": "Security check",
+        "line": "Our security team reviews it before it goes live."
+      },
+      "G8": {
+        "name": "Launch",
+        "line": "We go live together and stay close for the first days."
+      },
+      "G9": {
+        "name": "Support",
+        "line": "Fixes, updates and help, within an agreed response time."
+      }
+    },
+    "who": {
+      "eyebrow": "who we are",
+      "title": "Your idea, built properly and kept safe.",
+      "body": "NULL is a software and security company in Amman. We design and build websites, apps, ERP systems and AI tools, test them for security before launch, and let you follow every step in your own portal.",
+      "pillars": [
+        {
+          "title": "Plan",
+          "body": "We agree the scope, price and timeline with you before any work starts."
+        },
+        {
+          "title": "Build",
+          "body": "Websites, software, apps, ERP and AI, all from one team that owns the result."
+        },
+        {
+          "title": "Secure",
+          "body": "Every build is tested for security before it reaches your customers."
+        },
+        {
+          "title": "Support",
+          "body": "After launch we stay on, with updates and agreed response times."
+        }
+      ],
+      "cta": "More about us"
+    }
+  },
+  "services": {
+    "eyebrow": "services",
+    "title": "What we can build for you",
+    "intro": "One team covers all of it. Whichever you start with, it follows the same ten stages, and you follow it in your portal. Here's what each one is and what it includes.",
+    "items": {
+      "S1": {
+        "name": "Web platforms",
+        "description": "Company websites and online stores your team can update themselves, that load fast even on a weak connection.",
+        "includes": [
+          "Content you edit yourself",
+          "Product catalogue",
+          "Checkout",
+          "Fast on any connection"
+        ]
+      },
+      "S2": {
+        "name": "Software",
+        "description": "Custom software built around how you work: dashboards, internal tools and customer portals, with user roles and a record of who changed what.",
+        "includes": [
+          "Dashboards",
+          "User roles",
+          "Change history",
+          "Customer portals"
+        ]
+      },
+      "S3": {
+        "name": "Mobile apps",
+        "description": "iPhone and Android apps, published to the stores and kept up to date after launch.",
+        "includes": [
+          "iPhone",
+          "Android",
+          "Works on a weak signal",
+          "Published to the stores"
+        ]
+      },
+      "S4": {
+        "name": "AI solutions",
+        "description": "AI that reads your documents, answers questions about them and shows where each answer came from.",
+        "includes": [
+          "Reads your documents",
+          "Shows how sure it is",
+          "Points to the source",
+          "Fits how you work"
+        ]
+      },
+      "S5": {
+        "name": "Data & analytics",
+        "description": "We pull your numbers into one place and build reports you can trust.",
+        "includes": [
+          "Data from every system",
+          "One place for it all",
+          "Dashboards",
+          "Numbers you can trust"
+        ]
+      },
+      "S6": {
+        "name": "Security assessments",
+        "description": "We test your systems the way an attacker would, then give you a clear list of what to fix first.",
+        "includes": [
+          "Penetration testing",
+          "Code review",
+          "Report ranked by risk",
+          "Retest after the fixes"
+        ]
+      },
+      "S7": {
+        "name": "Security operations",
+        "description": "Round-the-clock monitoring, and a team that responds when something looks wrong.",
+        "includes": [
+          "Round-the-clock monitoring",
+          "Alert triage",
+          "Incident response",
+          "A team on call"
+        ]
+      },
+      "S8": {
+        "name": "Cloud & DevOps",
+        "description": "Moving to the cloud, automatic deployments and servers set up as code, so releases become routine.",
+        "includes": [
+          "Cloud setup",
+          "Automatic releases",
+          "Containers",
+          "Servers set up as code"
+        ]
+      },
+      "S9": {
+        "name": "Integration",
+        "description": "We connect the systems you already use so data moves between them on its own.",
+        "includes": [
+          "APIs",
+          "Connecting your systems",
+          "Webhooks",
+          "Retrying what failed"
+        ]
+      },
+      "S10": {
+        "name": "Managed support",
+        "description": "After launch we stay on, with fixes, updates and support under an agreed response time.",
+        "includes": [
+          "Agreed response times",
+          "Maintenance",
+          "Security updates",
+          "Uptime watch"
+        ]
+      },
+      "S11": {
+        "name": "ERP systems",
+        "description": "One system for your accounts, inventory, sales, purchasing and people, set up around how your company actually runs.",
+        "includes": [
+          "Accounting & invoicing",
+          "Inventory & warehouses",
+          "Sales & purchasing",
+          "HR & payroll"
+        ]
+      }
+    },
+    "catalogue": {
+      "of": "of",
+      "includes": "What's included",
+      "cta": "Start a project like this",
+      "jump": "Jump to a service"
+    }
+  },
+  "about": {
+    "eyebrow": "about",
+    "title": "We build software that holds up",
+    "body": "NULL is a software and security company in Amman. We design and build websites, custom software, apps, ERP systems and AI tools, and we test every one for security before it goes live.",
+    "factsTitle": "NULL in three numbers",
+    "facts": [
+      {
+        "n": 11,
+        "label": "service lines, all from one team"
+      },
+      {
+        "n": 10,
+        "label": "clear stages on every project"
+      },
+      {
+        "n": 1,
+        "label": "private portal for each project"
+      }
+    ],
+    "principlesTitle": "What we hold ourselves to",
+    "principles": [
+      {
+        "title": "You always know where it stands",
+        "body": "Every project moves through the same ten stages. Your portal shows which one you're in, what's done and what's next, without a single follow-up call."
+      },
+      {
+        "title": "Security from the first line",
+        "body": "Security isn't a phase we bolt on at the end. It's in how we design, write and review, and every build is tested before launch."
+      },
+      {
+        "title": "Made for Arabic and English",
+        "body": "Right-to-left is never an afterthought. We design every screen to work properly in Arabic and English from day one."
+      },
+      {
+        "title": "We stay after launch",
+        "body": "Launch is a stage, not the end. We keep your system updated, secure and running, with agreed response times."
+      }
+    ],
+    "servicesTitle": "What we do",
+    "servicesLink": "See every service in detail",
+    "rolesTitle": "Who you'll work with",
+    "rolesNote": "One team from the first call to support. You deal with the same people the whole way.",
+    "workTitle": "See what we've built",
+    "workCta": "Our work",
+    "roles": {
+      "lead": {
+        "title": "Delivery lead",
+        "description": "Your main contact. Owns the plan and keeps things on schedule."
+      },
+      "backend": {
+        "title": "Backend & data",
+        "description": "APIs, databases, and connecting your systems."
+      },
+      "frontend": {
+        "title": "Frontend",
+        "description": "The screens people use, on web and mobile, in Arabic and English."
+      },
+      "security": {
+        "title": "Security",
+        "description": "Tests and hardens everything before it goes live."
+      },
+      "ai": {
+        "title": "AI engineering",
+        "description": "Search, assistants, and connecting AI models to your data."
+      }
+    },
+    "principlesEyebrow": "our standards",
+    "rolesEyebrow": "the team",
+    "groups": {
+      "build": {
+        "label": "Build",
+        "title": "Products people use every day"
+      },
+      "intelligence": {
+        "label": "Intelligence",
+        "title": "AI and data that pay their way"
+      },
+      "security": {
+        "label": "Security",
+        "title": "Tested, watched and defended"
+      },
+      "run": {
+        "label": "Run",
+        "title": "Kept fast, connected and supported"
+      }
+    }
+  },
+  "portfolio": {
+    "eyebrow": "portfolio",
+    "title": "Built, launched, in use.",
+    "body": "NULL builds websites, software, apps, ERP systems and AI tools, and secures them. Here's who we are, what we offer, and some of the companies we've built for.",
+    "count": "{count, plural, one {# client} other {# clients}}",
+    "visit": "Visit site",
+    "services": "What we did",
+    "whoTitle": "Who we are",
+    "whoBody": "A software and security company in Amman. One team covers everything from the first idea to launch and support, and every client follows their project in a private portal.",
+    "offerTitle": "What we offer",
+    "offerLink": "All services in detail",
+    "workTitle": "Companies we've built for",
+    "types": {
+      "website": "Website",
+      "app": "Mobile app",
+      "software": "Software"
+    },
+    "contactTitle": "Let's talk about yours",
+    "contactBody": "Tell us what you need in a few lines. We reply within two working days.",
+    "email": "Email",
+    "office": "Office",
+    "officeValue": "Amman, Jordan",
+    "formCta": "Send us a message",
+    "social": "Follow us",
+    "phone": "Phone",
+    "offerDetails": "See this service in detail",
+    "aboutLink": "More about us",
+    "makes": [
+      "Websites",
+      "Custom software",
+      "Mobile apps",
+      "ERP systems",
+      "AI tools",
+      "Security"
+    ]
+  },
+  "contact": {
+    "eyebrow": "contact",
+    "title": "Tell us what you need",
+    "body": "A few lines are enough. We'll reply within two working days.",
+    "fields": {
+      "name": "Name",
+      "email": "Email",
+      "company": "Company",
+      "phone": "Phone",
+      "serviceLine": "What's it about?",
+      "serviceLinePlaceholder": "Choose a line (optional)",
+      "message": "What do you need?"
+    },
+    "submit": "Send",
+    "sending": "Sending…",
+    "successTitle": "Message sent.",
+    "successBody": "We'll come back to you within two working days.",
+    "errorTitle": "That didn't send.",
+    "errorBody": "Something went wrong on our side. Try again, or email info@null-solutions.com.",
+    "retry": "Try again",
+    "invalid": "Please check this field.",
+    "direct": "Email us",
+    "office": "Office",
+    "officeValue": "Amman, Jordan",
+    "reply": "We reply within",
+    "replyValue": "Two working days"
+  },
+  "notFound": {
+    "title": "That page doesn't exist.",
+    "back": "Back to home"
+  },
+  "login": {
+    "eyebrow": "portal",
+    "title": "Client portal",
+    "intro": "Enter the access code we sent you to open your project: progress, invoices, files and requests.",
+    "accessCode": "Access code",
+    "accessCodeHint": "It starts with NS- and came from NULL with your project.",
+    "open": "Open my project",
+    "working": "One moment…",
+    "incomplete": "The code has 16 characters after NS-. Check you have all of it.",
+    "badCode": "That code didn't open a project. Check it and try again.",
+    "tooMany": "Too many tries. Wait a few minutes, then try again.",
+    "genericError": "Something went wrong. Try again.",
+    "keepSafe": "Anyone with this code can see your project, so keep it like a password. Lost it? Ask us for a new one and the old one stops working.",
+    "keyTitle": "Open your project",
+    "quote": "Your project, one code away.",
+    "quoteAuthor": "NULL Solutions",
+    "noCode": "Don't have a code?",
+    "askUs": "Ask us for one"
+  },
+  "portal": {
+    "signedInAs": "Signed in as",
+    "signOut": "Sign out"
+  },
+  "portalNav": {
+    "dashboard": "Overview",
+    "invoices": "Invoices",
+    "documents": "Files",
+    "notifications": "Notifications",
+    "partner": "Partner metrics",
+    "admin": "Admin",
+    "project": "Project",
+    "backToSite": "Back to website"
+  },
+  "dashboard": {
+    "title": "Overview",
+    "onTrack": "On track",
+    "estCompletion": "Estimated {date}",
+    "gatesDone": "{done} of {total} gates",
+    "outstanding": "Outstanding balance",
+    "nextGate": "Next: {gate}",
+    "openProject": "Open project",
+    "noProject": "No project yet",
+    "noProjectBody": "Once your project is set up, its status shows here.",
+    "paymentsTitle": "Payments",
+    "paymentsMade": "{paid} of {total} payments made",
+    "paymentsLeft": "Left to pay",
+    "nextDue": "Next payment due {date}",
+    "seeInvoices": "See invoices",
+    "noPayments": "No payments are due yet.",
+    "contactTitle": "Talk to us",
+    "contactBody": "Questions, changes or anything else about your project: message us here, or send an email.",
+    "contactPortal": "Send a message",
+    "contactEmail": "Email"
+  },
+  "project": {
+    "eyebrow": "project",
+    "gatesTitle": "Delivery gates",
+    "milestonesTitle": "Milestones",
+    "serviceLine": "Service line",
+    "started": "Started",
+    "target": "Target date",
+    "estCompletion": "Estimated completion",
+    "tabs": {
+      "overview": "Overview",
+      "requests": "Requests & comments"
+    },
+    "milestoneEmpty": "No milestones listed yet."
+  },
+  "invoices": {
+    "title": "Invoices",
+    "number": "Invoice",
+    "issued": "Issued",
+    "due": "Due",
+    "amount": "Amount",
+    "status": "Status",
+    "empty": "No invoices yet",
+    "emptyBody": "Invoices from NULL will appear here with their payment status.",
+    "detailTitle": "Invoice {number}",
+    "lineItems": "Line items",
+    "qty": "Qty",
+    "unit": "Unit price",
+    "subtotal": "Subtotal",
+    "tax": "Tax",
+    "total": "Total",
+    "paid": "Paid",
+    "balance": "Balance due",
+    "howToPay": "How to pay",
+    "bankTransfer": "Bank transfer",
+    "cliq": "CliQ",
+    "noOnlinePayment": "Payment is by bank transfer or CliQ — there is no online payment.",
+    "downloadPdf": "Download PDF",
+    "payments": "Payments received",
+    "back": "All invoices"
+  },
+  "documents": {
+    "title": "Files",
+    "name": "Name",
+    "type": "Type",
+    "addedBy": "By",
+    "download": "Download",
+    "empty": "No files yet",
+    "emptyBody": "NULL will add proposals, contracts and deliverables here as your project moves."
+  },
+  "notifications": {
+    "title": "Notifications",
+    "markAll": "Mark all read",
+    "unread": "unread",
+    "empty": "You are all caught up",
+    "emptyBody": "Updates about your project, invoices and files will show here.",
+    "live": "New update on your project."
+  },
+  "requests": {
+    "title": "Requests & comments",
+    "new": "New request",
+    "type": "Type",
+    "subject": "Subject",
+    "message": "Message",
+    "send": "Send request",
+    "sending": "Sending…",
+    "reply": "Reply",
+    "replyPlaceholder": "Write a reply…",
+    "sendReply": "Send",
+    "types": {
+      "comment": "Comment",
+      "question": "Question",
+      "change_request": "Change request"
+    },
+    "empty": "No requests yet",
+    "emptyBody": "Raise an edit, a question or a comment about the project here — no need for WhatsApp.",
+    "byClient": "You",
+    "byTeam": "NULL team",
+    "open": "Open a request",
+    "backToList": "All requests"
+  },
+  "partner": {
+    "title": "Partner metrics",
+    "body": "A Partner-scoped view. The specific data points are still being defined with NULL.",
+    "empty": "No metrics yet"
+  },
+  "admin": {
+    "title": "Admin",
+    "clients": "Clients",
+    "name": "Name",
+    "contact": "Contact",
+    "status": "Status",
+    "lines": "Service lines",
+    "empty": "No clients yet",
+    "subtitle": "Set up clients and their projects. Everything you do here shows up in the client's portal straight away.",
+    "newClient": "New client",
+    "clientName": "Company name",
+    "email": "Contact email",
+    "phone": "Phone",
+    "create": "Create",
+    "creating": "Saving…",
+    "cancel": "Cancel",
+    "open": "Open",
+    "back": "All clients",
+    "projects": "Projects",
+    "noProjects": "No projects yet.",
+    "newProject": "New project",
+    "projectName": "Project name",
+    "serviceLine": "Service line",
+    "targetDate": "Target date",
+    "description": "Short description",
+    "code": "Project number",
+    "manage": "Manage",
+    "clientView": "See it as the client",
+    "gates": "Delivery gates",
+    "advance": "Mark {gate} done",
+    "allDone": "All gates done",
+    "milestones": "Milestones",
+    "addMilestone": "Add milestone",
+    "milestoneTitle": "Title",
+    "gate": "Gate",
+    "dueDate": "Due date",
+    "invoices": "Invoices",
+    "issueInvoice": "Issue invoice",
+    "invoiceFor": "What it's for",
+    "amount": "Amount (JOD)",
+    "recordPayment": "Record payment",
+    "method": "Method",
+    "reference": "Reference",
+    "documents": "Files",
+    "addDocument": "Add file",
+    "fileName": "File name",
+    "fileType": "Type",
+    "failed": "That didn't save. Check the fields and try again.",
+    "due": "Due",
+    "progress": "{percent}% · now at {gate}",
+    "milestoneStatus": {
+      "pending": "Pending",
+      "in_progress": "In progress",
+      "done": "Done",
+      "blocked": "Blocked"
+    },
+    "methods": {
+      "bank_transfer": "Bank transfer",
+      "cliq": "CliQ",
+      "cash": "Cash",
+      "other": "Other"
+    },
+    "types": {
+      "proposal": "Proposal",
+      "contract": "Contract",
+      "deliverable": "Deliverable",
+      "report": "Report",
+      "invoice": "Invoice",
+      "other": "Other"
+    },
+    "noneYet": "Nothing here yet.",
+    "access": "Client access",
+    "issueCode": "Create access code",
+    "replaceCode": "Replace code",
+    "revokeCode": "Turn off access",
+    "codeActive": "The client can get in. Current code created {date}.",
+    "codeNone": "No working code. The client can't open this project until you create one.",
+    "codeOn": "Active",
+    "codeOff": "Off",
+    "codeOnce": "Here's the client's access code. It's shown this once, so copy it now. We only keep a scrambled copy.",
+    "copyCode": "Copy code",
+    "copyMessage": "Copy message for the client",
+    "copied": "Copied",
+    "codeHandover": "Send it straight to the client. If it's ever lost or shared, replace it and the old code stops working at once.",
+    "codeMessage": "Hi, you can follow {project} here: {url}\nYour access code: {code}\nKeep it private, like a password.",
+    "confirmReplace": "Replace the code? The current one stops working straight away and anyone using it is signed out.",
+    "confirmRevoke": "Turn off access? The client is signed out and can't get in until you create a new code.",
+    "codeFailed": "The project was created, but its code wasn't. Open the project and create one there.",
+    "clientPage": "What the client sees",
+    "progressLabel": "Progress",
+    "saving": "Saving…",
+    "saveProgress": "Save progress",
+    "saved": "Saved",
+    "progressHint": "The client sees this percentage on their page, and gets a notification when it changes.",
+    "paymentsLabel": "Payments",
+    "paymentsMade": "{paid} of {total} payments made",
+    "paymentsLeft": "Left to pay",
+    "nextDue": "next due {date}",
+    "noPaymentsYet": "No payments added yet.",
+    "paymentsHint": "Add each payment below. When the client pays one, record it and their page updates.",
+    "newCodeTitle": "The client's access code",
+    "paymentsTitle": "Payments",
+    "addPayment": "Add payment"
+  },
+  "team": {
+    "eyebrow": "team",
+    "title": "NULL team sign-in",
+    "intro": "For the NULL team only. Clients open their project with an access code on the portal page.",
+    "email": "Email",
+    "password": "Password",
+    "signIn": "Sign in",
+    "working": "One moment…",
+    "badCreds": "Email or password is wrong.",
+    "tooMany": "Too many tries. Wait a few minutes, then try again.",
+    "genericError": "Something went wrong. Try again."
+  },
+  "status": {
+    "invoice": {
+      "sent": "Sent",
+      "partially_paid": "Partly paid",
+      "paid": "Paid",
+      "overdue": "Overdue",
+      "void": "Void"
+    },
+    "project": {
+      "discovery": "Discovery",
+      "in_progress": "In progress",
+      "on_hold": "On hold",
+      "in_review": "In review",
+      "delivered": "Delivered",
+      "closed": "Closed"
+    },
+    "request": {
+      "open": "Open",
+      "in_review": "In review",
+      "answered": "Answered",
+      "accepted": "Accepted",
+      "rejected": "Declined",
+      "closed": "Closed"
+    },
+    "milestone": {
+      "pending": "Not started",
+      "in_progress": "In progress",
+      "done": "Done",
+      "blocked": "Blocked"
+    },
+    "client": {
+      "active": "Active",
+      "prospect": "Prospect",
+      "inactive": "Inactive"
+    }
+  }
+}

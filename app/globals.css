@@ -1,0 +1,854 @@
+@import "tailwindcss";
+
+/*
+  NULL Solutions design tokens — current palette in docs/brand-palette.md.
+  Two contexts share one token set: light = portal, dark = public.
+  Theme is chosen by [data-theme] on <html> (set per route group in Phase 4 step 2);
+  prefers-color-scheme is the fallback before JS/route resolves it.
+*/
+
+:root {
+  /* Black and white with navy only in small touches (user, 2026-09-29) —
+     docs/brand-palette.md. The founder palette (Navy / Graphite / Signal Blue /
+     Deep Teal) is kept there as the reference to go back to.
+     Navy #0D1B2A is the accent: on white it's text and marks; on black it is
+     only ever a fill, and accent text turns white. */
+  --ground: #f6f6f6;
+  --surface: #ffffff;
+  --line: #e3e3e3;
+  --fg: #0a0a0a;
+  --fg-muted: #5c5c5c;
+  --signal: #0d1b2a; /* Navy */
+  --signal-ink: #0d1b2a;
+  --signal-wash: #eceff3;
+  --ok: #2f6a4f;
+  --danger: #b23a29;
+  --focus: #0d1b2a;
+
+  --r-sm: 2px;
+  --r-md: 4px;
+  --r-lg: 8px;
+
+  --shadow-float: 0 1px 2px rgba(0, 0, 0, 0.06), 0 12px 28px -14px rgba(0, 0, 0, 0.16);
+
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --ground: #0a0a0a;
+  --surface: #161616;
+  --line: #2a2a2a;
+  --fg: #f5f5f5;
+  --fg-muted: #9a9a9a;
+  --signal-ink: #ffffff;
+  --signal-wash: #111a24;
+  --ok: #6fbf95;
+  --danger: #ff6b57;
+
+  color-scheme: dark;
+}
+
+/*
+  Marketing surface: black ground, white type; sections flip to white by
+  toggling `.tone-light` locally, so every bg-ground / text-fg / border-line
+  utility follows the section automatically. Navy is the accent: a fill on
+  black (--signal), text and marks on white (--signal-ink). (Never name the
+  light class `.invert` — that is Tailwind's colour-inversion filter.)
+*/
+[data-theme="mkt"] {
+  --ground: #0a0a0a;
+  --surface: #151515;
+  --line: #262626;
+  --fg: #fafafa;
+  --fg-muted: #9a9a9a;
+  --signal: #0d1b2a;
+  --signal-ink: #ffffff;
+  --signal-wash: #111a24;
+  --ok: #6fbf95;
+  --danger: #ff6b57;
+  --focus: #ffffff;
+  color-scheme: dark;
+}
+[data-theme="mkt"] .tone-light {
+  --ground: #ffffff;
+  --surface: #f4f4f4;
+  --line: #e5e5e5;
+  --fg: #0a0a0a;
+  --fg-muted: #5c5c5c;
+  --signal-ink: #0d1b2a;
+  --signal-wash: #eceff3;
+  --ok: #2f6a4f;
+  --focus: #0d1b2a;
+  color-scheme: light;
+}
+
+/* Map tokens to Tailwind's theme so utilities (bg-ground, text-fg, font-mono…) track runtime theme changes. */
+@theme inline {
+  --color-ground: var(--ground);
+  --color-surface: var(--surface);
+  --color-line: var(--line);
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-signal: var(--signal);
+  --color-signal-ink: var(--signal-ink);
+  --color-signal-wash: var(--signal-wash);
+  --color-ok: var(--ok);
+  --color-danger: var(--danger);
+
+  --radius-sm: var(--r-sm);
+  --radius-md: var(--r-md);
+  --radius-lg: var(--r-lg);
+
+  /* shadcn/ui semantic aliases → NULL tokens, so any `shadcn add` component
+     inherits this palette instead of its stock skin. */
+  --color-background: var(--ground);
+  --color-foreground: var(--fg);
+  --color-card: var(--surface);
+  --color-card-foreground: var(--fg);
+  --color-popover: var(--surface);
+  --color-popover-foreground: var(--fg);
+  --color-primary: var(--fg);
+  --color-primary-foreground: var(--ground);
+  --color-secondary: var(--surface);
+  --color-secondary-foreground: var(--fg);
+  --color-muted: var(--surface);
+  --color-muted-foreground: var(--fg-muted);
+  --color-accent: var(--signal);
+  --color-accent-foreground: #ffffff;
+  --color-destructive: var(--danger);
+  --color-destructive-foreground: var(--ground);
+  --color-border: var(--line);
+  --color-input: var(--line);
+  --color-ring: var(--signal);
+  --radius: var(--r-md);
+
+  --font-sans: var(--font-outfit), var(--font-tajawal), system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: var(--font-plex-mono), var(--font-tajawal), ui-monospace, "Courier New", monospace;
+  --font-display: var(--font-sans);
+
+  --text-display-xl: 3.5rem;
+  --text-display-xl--line-height: 1.05;
+  --text-display-xl--letter-spacing: -0.02em;
+  --text-display-l: 2.5rem;
+  --text-display-l--line-height: 1.1;
+  --text-display-l--letter-spacing: -0.015em;
+}
+
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop {
+    border-color: var(--color-line);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    overflow-x: hidden;
+  }
+
+  /* Tailwind v4 dropped the pointer cursor on buttons. Everything that acts on
+     a click shows the hand; disabled controls don't. */
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [role="tab"],
+  summary,
+  select:not(:disabled),
+  label[for],
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled),
+  input[type="submit"]:not(:disabled) {
+    cursor: pointer;
+  }
+  button:disabled,
+  [aria-disabled="true"] {
+    cursor: not-allowed;
+  }
+
+  /* Lenis smooth scroll */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+  .lenis.lenis-stopped {
+    overflow: clip;
+  }
+
+  body {
+    background: var(--color-ground);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    line-height: 1.45;
+    letter-spacing: 0.005em;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Every heading in the heading face; utilities (font-mono…) still win. */
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+  [dir="rtl"] :is(h1, h2, h3, h4) {
+    letter-spacing: 0;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+    border-radius: 1px;
+  }
+
+  /* Arabic gets a touch more leading at matched sizes. */
+  [dir="rtl"] body {
+    line-height: 1.7;
+  }
+
+  /* The logo artwork is black — invert it to white on dark surfaces. */
+  [data-theme="dark"] [data-brand-logo] {
+    filter: brightness(0) invert(1);
+  }
+
+  ::selection {
+    background: #0d1b2a;
+    color: #ffffff;
+  }
+}
+
+@layer components {
+  /* The mono "machine voice": eyebrows, labels, G0–G9, invoice numbers, project codes. */
+  .u-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-fg-muted);
+  }
+  [dir="rtl"] .u-label {
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  .u-data {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .u-eyebrow::before {
+    content: "/ ";
+    color: var(--color-signal-ink);
+  }
+
+  /* The resolving mark. Runs once; reduced-motion falls back to the final state. */
+  .ns-mark--resolve .ns-mark__ring {
+    stroke-dasharray: 82;
+    stroke-dashoffset: 82;
+    animation: ns-draw 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+  }
+  .ns-mark--resolve .ns-mark__slash {
+    stroke-dasharray: 32;
+    stroke-dashoffset: 32;
+    animation: ns-draw 0.52s cubic-bezier(0.2, 0.7, 0.2, 1) 0.38s forwards;
+  }
+  @keyframes ns-draw {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  /* Hero content: staggered rise-in on load. */
+  .ns-hero-in {
+    animation: ns-rise 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+  .ns-hero-in--1 { animation-delay: 0.08s; }
+  .ns-hero-in--2 { animation-delay: 0.16s; }
+  .ns-hero-in--3 { animation-delay: 0.24s; }
+  .ns-hero-in--4 { animation-delay: 0.32s; }
+  @keyframes ns-rise {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: none; }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ns-hero-in {
+    animation: none;
+  }
+}
+
+@layer components {
+  /* ---- display type for the marketing surface ---- */
+  /* Headlines set like arkantechjo.com: medium weight, tight leading, a
+     touch of negative tracking. Not bold. */
+  .mkt-display {
+    font-family: var(--font-display);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.015em;
+  }
+  /* Arabic: more leading, so marks like fatha, sukun and shadda sit clear. */
+  [dir="rtl"] .mkt-display {
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: 1.3;
+  }
+
+  /* ---- scroll-reveal: clip up ---- */
+  .ns-reveal {
+    clip-path: inset(0 0 100% 0);
+    transform: translateY(18px);
+    transition:
+      clip-path 0.7s cubic-bezier(0.19, 1, 0.22, 1),
+      transform 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+  .ns-reveal.in {
+    /* negative insets: diacritics and descenders that sit outside the line
+       box (Arabic fatha, sukun, shadda…) must not be cut off */
+    clip-path: inset(-0.6em -0.6em -25% -0.6em);
+    transform: none;
+  }
+
+  /* ---- pinned camera sections: phones, tablets and reduced motion drop the
+     pin and keep the opening frame. !important: the track's own h-[…vh] /
+     h-screen utilities sit in a later layer and would win otherwise. ---- */
+  .ns-pin-track[data-still] {
+    height: auto !important;
+  }
+  .ns-pin-track[data-still] .ns-pin-stage {
+    position: relative !important;
+    height: auto !important;
+    min-height: 100svh;
+  }
+
+  /* ---- method journey: stage cards ----
+     Raw tokens (--surface, --fg-muted), not the --color-* aliases: those are
+     resolved once at :root, so they'd keep the light theme's values here. */
+  .ns-stage {
+    transition:
+      transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1),
+      background-color 0.5s,
+      border-color 0.5s,
+      opacity 0.5s;
+  }
+  .ns-stage[data-state="next"] {
+    opacity: 0.45;
+  }
+  .ns-stage[data-state="now"] {
+    transform: translateY(-16px);
+    background: var(--surface);
+    border-color: var(--fg);
+    box-shadow: 0 30px 60px -30px rgba(13, 27, 42, 0.55);
+  }
+  .ns-stage-num {
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--fg-muted);
+    transition: color 0.5s;
+  }
+  .ns-stage[data-state="done"] .ns-stage-num {
+    color: var(--fg-muted);
+    -webkit-text-stroke-color: transparent;
+  }
+  .ns-stage[data-state="now"] .ns-stage-num {
+    color: var(--signal-ink);
+    -webkit-text-stroke-color: transparent;
+  }
+
+  /* reduced motion: the pinned stories become plain, readable blocks */
+  /* who we are: the rail draws across, then each step settles in on it */
+
+
+  /* ---- live demo micro-motion ---- */
+  .ns-toast {
+    animation: ns-toast 2.6s ease forwards;
+  }
+  @keyframes ns-toast {
+    0% { opacity: 0; transform: translateY(14px); }
+    10% { opacity: 1; transform: none; }
+    82% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+  .ns-sheet {
+    animation: ns-sheet 0.38s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+  @keyframes ns-sheet {
+    from { transform: translateY(100%); }
+  }
+  .ns-drawer {
+    animation: ns-drawer 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+  @keyframes ns-drawer {
+    from { transform: translateX(100%); }
+  }
+  .ns-feed-in {
+    animation: ns-feed-in 0.45s ease both;
+  }
+  @keyframes ns-feed-in {
+    from { opacity: 0; transform: translateY(-8px); }
+  }
+  .ns-dialog-in {
+    animation: ns-dialog-in 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+  @keyframes ns-dialog-in {
+    from { opacity: 0; transform: scale(0.98); }
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ns-reveal {
+    clip-path: none;
+    transform: none;
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---- services catalogue (app/[locale]/(marketing)/services) ----
+   One service is "on" at a time (data-on, set by ServiceScroller from the shared
+   scroll loop). Only the on diagram animates: it builds itself each time you
+   arrive, then its loops (flows, pulses) keep running. Off diagrams sit in
+   their finished pose, so nothing is ever blank. */
+@layer components {
+  .svc-art * {
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+  .svc-art .a-grow { transform-origin: bottom; }
+  .svc-art .a-fill { transform-origin: left; }
+
+  [data-on] .svc-art .a-rise { animation: svc-rise 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+  [data-on] .svc-art .a-pop { animation: svc-pop 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+  [data-on] .svc-art .a-drop { animation: svc-drop 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+  [data-on] .svc-art .a-grow { animation: svc-grow 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+  [data-on] .svc-art .a-fill { animation: svc-fill 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+  [data-on] .svc-art .a-draw { animation: svc-draw 1.6s ease-out both; }
+  [data-on] .svc-art .a-dash { animation: svc-dash 1.2s linear infinite; }
+  [data-on] .svc-art .a-pulse { animation: svc-pulse 1.8s ease-in-out infinite; }
+  [data-on] .svc-art .a-travel { animation: svc-travel 3.2s cubic-bezier(0.6, 0, 0.3, 1) infinite; }
+  [data-on] .svc-art [class*="a-"] { animation-delay: calc(var(--d, 0) * 110ms); }
+  [data-on] .svc-art .a-dash,
+  [data-on] .svc-art .a-pulse,
+  [data-on] .svc-art .a-travel { animation-delay: calc(var(--d, 0) * 110ms + 0.4s); }
+
+  /* the sticky panel: the on figure in, the rest out */
+  .svc-fig {
+    opacity: 0;
+    transform: translateY(14px) scale(0.975);
+    transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+    pointer-events: none;
+  }
+  .svc-fig[data-on] {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* the text column: the on service reads, the others step back (wide screens) */
+  @media (min-width: 1024px) {
+    .svc-block { opacity: 0.22; transition: opacity 0.45s ease; }
+    .svc-block[data-on] { opacity: 1; }
+  }
+}
+
+@keyframes svc-rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes svc-pop { 0% { opacity: 0; transform: scale(0.6); } 70% { transform: scale(1.06); } 100% { opacity: 1; transform: scale(1); } }
+@keyframes svc-drop { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: none; } }
+@keyframes svc-grow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@keyframes svc-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes svc-draw { from { stroke-dashoffset: var(--len, 600); } to { stroke-dashoffset: var(--to, 0); } }
+@keyframes svc-dash { to { stroke-dashoffset: -24; } }
+@keyframes svc-pulse { 0%, 100% { opacity: 0.2; transform: scale(1); } 50% { opacity: 0.55; transform: scale(1.7); } }
+@keyframes svc-travel { 0%, 8% { transform: translateX(0); } 92%, 100% { transform: translateX(var(--dx, 200px)); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .svc-art [class*="a-"] { animation: none !important; }
+  .svc-fig, .svc-block { transition: none; }
+}
+
+/* ---- portfolio covers: the logo drifts against its cover as the card
+   crosses the screen (--p from Parallax.tsx), and lifts a touch on hover ---- */
+@layer components {
+  .pf-logo {
+    transform: translateY(calc(var(--p, 0) * -16px));
+    transition: scale 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .group:hover .pf-logo { scale: 1.05; }
+  .pf-art { transform: translateY(calc(var(--p, 0) * 26px)); }
+  .pf-shot { transition: translate 0.7s cubic-bezier(0.2, 0.7, 0.2, 1); }
+  .group:hover .pf-shot { translate: 0 -3%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pf-logo, .pf-art { transform: none; }
+  .group:hover .pf-logo { scale: 1; }
+}
+
+/* ---- header: the marker under the current section (NavLinks.tsx) ---- */
+@layer components {
+  .ns-nav-marker[data-placed] {
+    transition:
+      transform 0.55s cubic-bezier(0.2, 0.8, 0.2, 1),
+      width 0.55s cubic-bezier(0.2, 0.8, 0.2, 1),
+      opacity 0.3s ease;
+  }
+  .ns-nav-line { animation: ns-nav-draw 0.6s 0.15s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+}
+@keyframes ns-nav-draw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@media (prefers-reduced-motion: reduce) {
+  .ns-nav-marker[data-placed] { transition: none; }
+  .ns-nav-line { animation: none; }
+}
+
+/* ---- about: line icons draw themselves when their card reveals ---- */
+@layer components {
+  .ab-draw { stroke-dasharray: 1; stroke-dashoffset: 0; }
+  .ns-reveal:not(.in) .ab-draw { stroke-dashoffset: 1; }
+  .ns-reveal.in .ab-draw { animation: ab-draw 1s cubic-bezier(0.4, 0, 0.2, 1) both; }
+}
+@keyframes ab-draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .ns-reveal .ab-draw { animation: none; stroke-dashoffset: 0; }
+}
+
+/* ---- loading screen (components/brand/LoadingScreen.tsx) ----
+   Navy cover with the NULL mark drawing itself: ring, slash, then the name.
+   While it's up the page underneath can't scroll and the hero waits. */
+html.ns-loading,
+html.ns-loading body {
+  overflow: hidden;
+}
+html.ns-loading .ns-hero-in {
+  animation-play-state: paused;
+}
+.ns-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(60% 55% at 50% 45%, #0d1b2a 0%, transparent 70%),
+    #050505;
+  color: #fafafa;
+  transition: opacity 0.7s ease, visibility 0.7s ease;
+  /* failsafe: gone after 12s even if the script never runs */
+  animation: ns-loader-failsafe 0.01s linear 12s forwards;
+}
+.ns-loader[data-state="out"] {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.ns-loader[data-state="out"] .ns-loader__lockup {
+  transform: scale(0.94);
+}
+.ns-loader__lockup {
+  --loader-h: clamp(5.4rem, 13vw, 8.2rem);
+  display: flex;
+  align-items: center;
+  gap: clamp(0.9rem, 2.2vw, 1.5rem);
+  transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.ns-loader__mark {
+  width: var(--loader-h);
+  height: auto;
+  overflow: visible;
+}
+.ns-loader__ring,
+.ns-loader__slash {
+  fill: none;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+}
+.ns-loader__ring {
+  stroke: #fafafa;
+  stroke-width: 6.5;
+  stroke-dashoffset: 1;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+  animation: ns-loader-draw 0.9s cubic-bezier(0.65, 0, 0.35, 1) 0.15s forwards;
+}
+.ns-loader__slash {
+  stroke: #fafafa;
+  stroke-width: 6.5;
+  stroke-dashoffset: 1;
+  animation:
+    ns-loader-draw 0.45s cubic-bezier(0.4, 0, 0.2, 1) 0.95s forwards,
+    ns-loader-glow 2.2s ease-in-out 1.6s infinite;
+}
+/* A window onto the logo artwork that shows only its lettering: the art is
+   707×220 and the letters start at x≈232, so the window is (707−232)/220 of
+   the lockup's height wide, and the art slides left by 232/220 of it. */
+.ns-loader__word {
+  position: relative;
+  display: block;
+  height: var(--loader-h);
+  width: calc(var(--loader-h) * 475 / 220);
+  overflow: hidden;
+  clip-path: inset(0 100% 0 0);
+  animation: ns-loader-wipe 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) 1.15s forwards;
+}
+.ns-loader__letters {
+  position: absolute;
+  top: 0;
+  left: calc(var(--loader-h) * -232 / 220);
+  width: auto;
+  max-width: none;
+  height: 100%;
+  /* black artwork → white on the dark loader */
+  filter: brightness(0) invert(1);
+}
+@keyframes ns-loader-draw {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes ns-loader-wipe {
+  to { clip-path: inset(0 -5% 0 0); }
+}
+@keyframes ns-loader-glow {
+  0%, 100% { stroke: #fafafa; }
+  50% { stroke: #9a9a9a; }
+}
+@keyframes ns-loader-failsafe {
+  to { opacity: 0; visibility: hidden; pointer-events: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ns-loader__ring,
+  .ns-loader__slash {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+  .ns-loader__word {
+    animation: none;
+    clip-path: none;
+  }
+}
+
+/* ---- portal sign-in (components/portal/KeyMark.tsx, LoginForm.tsx) ----
+   The page rises in once; the ring draws, the slash follows the code as it's
+   typed, clicks when complete, and the boxes shake on a wrong code. */
+.key-in {
+  animation: ns-rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.key-in--2 { animation-delay: 0.1s; }
+.key-in--3 { animation-delay: 0.2s; }
+.key-in--4 { animation-delay: 0.3s; }
+.key-mark__ring,
+.key-mark__slash {
+  fill: none;
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+}
+.key-mark__ring {
+  stroke: var(--fg);
+  stroke-dashoffset: 1;
+  animation: key-draw 1s cubic-bezier(0.65, 0, 0.35, 1) 0.15s forwards;
+}
+.key-mark__slash {
+  stroke: var(--signal);
+  transition: stroke-dashoffset 0.45s cubic-bezier(0.2, 0.7, 0.2, 1), stroke 0.3s;
+}
+.key-mark {
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.key-mark[data-state="complete"] {
+  transform: scale(1.06) rotate(-4deg);
+}
+.key-mark[data-state="error"] .key-mark__slash {
+  stroke: var(--danger);
+}
+@keyframes key-draw {
+  to { stroke-dashoffset: 0; }
+}
+.key-shake {
+  animation: key-shake 0.42s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+@keyframes key-shake {
+  20%, 60% { transform: translateX(-7px); }
+  40%, 80% { transform: translateX(7px); }
+}
+html.ns-loading :is(.key-in, .key-mark__ring) {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .key-in,
+  .key-shake { animation: none; }
+  .key-mark__ring { animation: none; stroke-dashoffset: 0; }
+  .key-mark,
+  .key-mark__slash { transition: none; }
+}
+
+/* ---- silk ribbon (components/marketing/SilkRibbon.tsx) ----
+   Fades out at both ends; sweeps in once, the first time it comes into view. */
+.silk {
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 1.8s cubic-bezier(0.65, 0, 0.35, 1);
+}
+[dir="rtl"] .silk {
+  clip-path: inset(0 0 0 100%);
+}
+.silk[data-in] {
+  clip-path: inset(0 0 0 0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .silk {
+    clip-path: none;
+    transition: none;
+  }
+}
+
+/* ---- trailing cursor dot (components/marketing/Cursor.tsx) ----
+   One white dot with difference blending: black on white, white on black.
+   Swells over links and buttons, dips on press, hides over text fields. */
+.ns-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 150;
+  pointer-events: none;
+  mix-blend-mode: difference;
+  transition: opacity 0.25s;
+}
+.ns-cursor[data-hidden] {
+  opacity: 0;
+}
+.ns-cursor__dot {
+  position: absolute;
+  top: -24px;
+  left: -24px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #ffffff;
+  transform: scale(0.28);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s;
+}
+.ns-cursor[data-state="link"] .ns-cursor__dot {
+  transform: scale(1);
+}
+.ns-cursor[data-state="text"] .ns-cursor__dot {
+  opacity: 0;
+}
+.ns-cursor[data-down] .ns-cursor__dot {
+  transform: scale(0.2);
+}
+.ns-cursor[data-state="link"][data-down] .ns-cursor__dot {
+  transform: scale(0.8);
+}
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .ns-cursor {
+    display: none;
+  }
+}
+
+/* ---- client sign-in space scene (components/portal/SpaceScene.tsx) ----
+   The astronaut drifts and turns, waves, the tether sways; the ∅ planet turns
+   slowly, stars twinkle, a shooting star now and then. Transforms and opacity
+   only. */
+.astro-float {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: astro-float 8s ease-in-out infinite;
+}
+@keyframes astro-float {
+  0%, 100% { transform: translate(0, 0) rotate(-7deg); }
+  25% { transform: translate(6px, -10px) rotate(-2deg); }
+  50% { transform: translate(0, -18px) rotate(5deg); }
+  75% { transform: translate(-6px, -8px) rotate(0deg); }
+}
+.astro-wave {
+  transform-box: view-box;
+  transform-origin: 74px 116px;
+  animation: astro-wave 2.6s ease-in-out infinite;
+}
+@keyframes astro-wave {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-24deg); }
+}
+.astro-tether {
+  animation: astro-tether 1.6s linear infinite;
+}
+@keyframes astro-tether {
+  to { stroke-dashoffset: -20; }
+}
+.astro-planet {
+  transform-box: view-box;
+  transform-origin: 200px 200px;
+  animation: astro-spin 90s linear infinite;
+}
+@keyframes astro-spin {
+  to { transform: rotate(360deg); }
+}
+.astro-star {
+  animation: astro-twinkle 3.2s ease-in-out infinite;
+}
+@keyframes astro-twinkle {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 0.95; }
+}
+.astro-blink {
+  animation: astro-twinkle 1.4s ease-in-out infinite;
+}
+.astro-shoot {
+  opacity: 0;
+  transform: rotate(18deg);
+  animation: astro-shoot 7s ease-in 2s infinite;
+}
+@keyframes astro-shoot {
+  0% { opacity: 0; translate: 0 0; }
+  4% { opacity: 1; }
+  12% { opacity: 0; translate: 340px 110px; }
+  100% { opacity: 0; translate: 340px 110px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .astro-float,
+  .astro-wave,
+  .astro-tether,
+  .astro-planet,
+  .astro-star,
+  .astro-blink,
+  .astro-shoot {
+    animation: none;
+  }
+}
+
+/* ---- footer: Instagram + email rows (components/layout/FooterContact.tsx) ---- */
+@layer components {
+  .ft-roll { display: inline-flex; overflow: hidden; }
+  .ft-ch { display: inline-flex; flex-direction: column; height: 1.15em; line-height: 1.15; overflow: hidden; white-space: pre; }
+  .ft-ch > span { transition: transform 0.55s cubic-bezier(0.7, 0, 0.2, 1) calc(var(--i) * 16ms); }
+  .ft-row:hover .ft-ch > span, .ft-row:focus-visible .ft-ch > span { transform: translateY(-100%); }
+  .ns-reveal:not(.in) .ft-ch { transform: translateY(110%); }
+  .ns-reveal.in .ft-ch { animation: ft-rise 0.8s cubic-bezier(0.19, 1, 0.22, 1) both; animation-delay: calc(0.25s + var(--i) * 28ms); }
+  .ft-tile { transition: color 0.4s ease, border-color 0.4s ease; }
+  .ft-tile::before { content: ""; position: absolute; inset: 0; opacity: 0; transform: scale(0.4); border-radius: inherit; transition: opacity 0.45s ease, transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .ft-tile-ig::before { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%); }
+  .ft-tile-mail::before { background: #ffffff; }
+  .ft-row:hover .ft-tile::before, .ft-row:focus-visible .ft-tile::before { opacity: 1; transform: none; }
+  .ft-row:hover .ft-tile, .ft-row:focus-visible .ft-tile { border-color: transparent; }
+  .ft-row:hover .ft-tile-mail { color: #0a0a0a; }
+  .ft-dot { transform-box: fill-box; transform-origin: center; }
+  .ns-reveal.in .ft-dot { animation: ft-pop 0.5s 0.9s cubic-bezier(0.3, 1.6, 0.5, 1) both; }
+}
+@keyframes ft-rise { from { transform: translateY(110%); } to { transform: none; } }
+@keyframes ft-pop { from { transform: scale(0); } to { transform: scale(1); } }
+@media (prefers-reduced-motion: reduce) {
+  .ns-reveal .ft-ch, .ns-reveal.in .ft-ch, .ns-reveal.in .ft-dot { animation: none; transform: none; }
+  .ft-ch > span, .ft-tile::before { transition: none; }
+}
