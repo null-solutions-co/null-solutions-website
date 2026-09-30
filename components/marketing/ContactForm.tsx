@@ -24,6 +24,33 @@ const schema = z.object({
 });
 type FormValues = z.infer<typeof schema>;
 
+/**
+ * Where a message goes. "netlify-forms": straight to Netlify Forms, which
+ * stores it and emails the team — for a site hosted on Netlify with no API
+ * behind it yet. Otherwise: our own /api/leads, which hands it to the API.
+ */
+const VIA_NETLIFY = process.env.NEXT_PUBLIC_LEADS_VIA === "netlify-forms";
+
+/** Netlify Forms reads url-encoded posts to a static page that declares the form (public/__forms.html). */
+function toNetlify(values: FormValues, locale: string) {
+  const body = new URLSearchParams({
+    "form-name": "contact",
+    name: values.name,
+    email: values.email,
+    company: values.company ?? "",
+    phone: values.phone ?? "",
+    service: values.serviceLineCode ?? "",
+    message: values.message,
+    locale,
+    website: values.website ?? "",
+  });
+  return fetch("/__forms.html", {
+    method: "POST",
+    headers: { "content-type": "application/x-www-form-urlencoded" },
+    body: body.toString(),
+  });
+}
+
 export function ContactForm() {
   const t = useTranslations("contact");
   const ts = useTranslations("services");
@@ -44,7 +71,7 @@ export function ContactForm() {
     }
     setStatus("sending");
     try {
-      const res = await fetch("/api/leads", {
+      const res = VIA_NETLIFY ? await toNetlify(values, locale) : await fetch("/api/leads", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({

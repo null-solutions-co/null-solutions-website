@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <title>Contact form</title>
+  </head>
+  <body>
+    <!-- Declares the contact form for Netlify Forms. The site posts to this
+         page from components/marketing/ContactForm.tsx; nobody visits it. -->
+    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="website" hidden>
+      <input name="name" />
+      <input name="email" type="email" />
+      <input name="company" />
+      <input name="phone" />
+      <input name="service" />
+      <textarea name="message"></textarea>
+      <input name="locale" />
+      <input name="website" />
+    </form>
+  </body>
+</html>
