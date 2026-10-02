@@ -12,7 +12,7 @@ const TAU = Math.PI * 2;
  * bundle reads like a strip of silk turning in the light. Brighter at the
  * centre, fading at both ends.
  *
- * Drop it in a `relative isolate` section on navy; it spans the full screen
+ * Drop it in a `relative isolate` section on black; it spans the full screen
  * width and sits behind the content. Only redrawn while on screen, through the
  * shared scroll loop. Phones get fewer lines and points.
  */

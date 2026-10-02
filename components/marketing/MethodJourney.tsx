@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { onTrackFrame, ramp } from "@/lib/scroll";
+import { StageTabs } from "./mobile/StageTabs";
 
 export type Stage = { code: string; label: string; name: string; line: string };
 
@@ -76,7 +77,10 @@ export function MethodJourney({
   }, [stages]);
 
   return (
-    <section ref={track} className="ns-pin-track relative h-[420vh] bg-ground text-fg">
+    <>
+    <StageTabs eyebrow={eyebrow} title={title} body={body} stages={stages} />
+    {/* wide screens: the pinned journey (phones get the tabs above) */}
+    <section ref={track} className="ns-pin-track relative h-[420vh] bg-ground text-fg max-md:hidden">
       <div className="ns-pin-stage sticky top-0 flex h-screen flex-col justify-center gap-10 overflow-hidden py-20">
         <div className="mx-auto flex w-full max-w-6xl flex-wrap items-end justify-between gap-6 px-6">
           <div className="flex max-w-2xl flex-col gap-4">
@@ -114,5 +118,6 @@ export function MethodJourney({
 
       </div>
     </section>
+    </>
   );
 }

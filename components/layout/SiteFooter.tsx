@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { BrandLogo } from "@/components/brand/BrandLogo";
 import { FooterContact } from "./FooterContact";
+import { PORTAL_ENABLED } from "@/lib/env";
 
 export async function SiteFooter() {
   const nav = await getTranslations("nav");
@@ -14,8 +15,8 @@ export async function SiteFooter() {
     { href: "/portfolio", label: nav("portfolio") },
     { href: "/about", label: nav("about") },
     { href: "/contact", label: nav("contact") },
-    { href: "/login", label: nav("portal") },
-  ] as const;
+    ...(PORTAL_ENABLED ? [{ href: "/login", label: nav("portal") }] : []),
+  ];
 
   return (
     <footer className="border-t border-line">

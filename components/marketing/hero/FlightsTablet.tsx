@@ -19,8 +19,8 @@ const FARES = [
 /** An airline booking flow on a tablet: results for Amman → Dubai with fares open. */
 export function FlightsTablet() {
   return (
-    <div className="flex h-full w-full flex-col bg-[#f3f5f9] text-[#0f1b2d]" style={{ fontFamily: "var(--font-sans)" }}>
-      <header className="flex h-16 shrink-0 items-center justify-between bg-[#0f2a4d] px-8 text-white">
+    <div className="flex h-full w-full flex-col bg-[#f3f5f9] text-[#141414]" style={{ fontFamily: "var(--font-sans)" }}>
+      <header className="flex h-16 shrink-0 items-center justify-between bg-[#1f1f1f] px-8 text-white">
         <span className="flex items-center gap-2 text-[19px] font-semibold tracking-tight"><Plane className="size-5 -rotate-45 text-[#f5b73b]" /> Rum Air</span>
         <nav className="flex gap-8 text-[14px] text-white/75"><span className="text-white">Book</span><span>Manage</span><span>Check-in</span><span>Flight status</span></nav>
         <span className="flex items-center gap-4 text-[13px] text-white/80"><span>EN · JOD</span><span className="rounded-full bg-white/15 px-4 py-1.5 text-white">Sign in</span></span>
@@ -34,12 +34,12 @@ export function FlightsTablet() {
         </div>
         <span className="h-8 w-px bg-black/10" />
         <span className="text-[14px] text-black/60">Thu 14 Nov · One way · 1 adult · Economy</span>
-        <span className="ml-auto rounded-full border border-[#0f2a4d]/25 px-4 py-2 text-[13px] font-medium text-[#0f2a4d]">Modify search</span>
+        <span className="ml-auto rounded-full border border-[#1f1f1f]/25 px-4 py-2 text-[13px] font-medium text-[#1f1f1f]">Modify search</span>
       </div>
 
       <div className="flex shrink-0 gap-2 bg-white px-8 pb-4">
         {DAYS.map(([d, p], i) => (
-          <span key={d} className={`flex flex-1 flex-col items-center rounded-xl border py-2.5 ${i === 3 ? "border-[#0f2a4d] bg-[#0f2a4d] text-white" : "border-black/[0.08]"}`}>
+          <span key={d} className={`flex flex-1 flex-col items-center rounded-xl border py-2.5 ${i === 3 ? "border-[#1f1f1f] bg-[#1f1f1f] text-white" : "border-black/[0.08]"}`}>
             <span className={`text-[12px] ${i === 3 ? "text-white/70" : "text-black/50"}`}>{d} Nov</span>
             <span className={`text-[15px] font-semibold tabular-nums ${i === 1 ? "text-[#0a8a5b]" : ""}`}>JOD {p}</span>
           </span>
@@ -54,7 +54,7 @@ export function FlightsTablet() {
               <p className="text-[12px] font-medium uppercase tracking-wider text-black/45">{title as string}</p>
               {(opts as string[]).map((o, i) => (
                 <p key={o} className="mt-2 flex items-center gap-2.5">
-                  <span className={`flex size-[18px] items-center justify-center rounded-[5px] border ${(on as number[]).includes(i) ? "border-[#0f2a4d] bg-[#0f2a4d] text-white" : "border-black/25"}`}>
+                  <span className={`flex size-[18px] items-center justify-center rounded-[5px] border ${(on as number[]).includes(i) ? "border-[#1f1f1f] bg-[#1f1f1f] text-white" : "border-black/25"}`}>
                     {(on as number[]).includes(i) ? <Check className="size-3" /> : null}
                   </span>{o}
                 </p>
@@ -63,18 +63,18 @@ export function FlightsTablet() {
           ))}
           <div>
             <p className="text-[12px] font-medium uppercase tracking-wider text-black/45">Price</p>
-            <div className="mt-3 h-1 rounded-full bg-black/10"><div className="ml-[8%] h-full w-[70%] rounded-full bg-[#0f2a4d]" /></div>
+            <div className="mt-3 h-1 rounded-full bg-black/10"><div className="ml-[8%] h-full w-[70%] rounded-full bg-[#1f1f1f]" /></div>
             <p className="mt-2 flex justify-between text-[12px] text-black/50"><span>JOD 131</span><span>JOD 238</span></p>
           </div>
         </aside>
 
         <div className="flex min-w-0 flex-1 flex-col gap-3">
-          <article className="rounded-2xl border-2 border-[#0f2a4d] bg-white p-5">
+          <article className="rounded-2xl border-2 border-[#1f1f1f] bg-white p-5">
             <div className="flex items-center gap-6">
               <div className="text-center"><p className="text-[24px] font-semibold tabular-nums">07:45</p><p className="text-[12px] text-black/50">AMM · T1</p></div>
               <div className="flex flex-1 flex-col items-center">
                 <p className="text-[12px] text-black/50">3h 05m</p>
-                <div className="relative my-1 h-px w-full bg-black/20"><Plane className="absolute -top-2 left-1/2 size-4 -translate-x-1/2 rotate-45 text-[#0f2a4d]" /></div>
+                <div className="relative my-1 h-px w-full bg-black/20"><Plane className="absolute -top-2 left-1/2 size-4 -translate-x-1/2 rotate-45 text-[#1f1f1f]" /></div>
                 <p className="text-[12px] font-medium text-[#0a8a5b]">Direct</p>
               </div>
               <div className="text-center"><p className="text-[24px] font-semibold tabular-nums">11:50</p><p className="text-[12px] text-black/50">DXB · T1</p></div>
@@ -89,7 +89,7 @@ export function FlightsTablet() {
                   <ul className="mt-2 flex flex-col gap-1 text-[12px] text-black/60">
                     {f.f.map((x, i) => <li key={x} className="flex items-center gap-1.5">{i === 0 ? <Luggage className="size-3.5" /> : <Check className="size-3.5" />}{x}</li>)}
                   </ul>
-                  <p className={`mt-3 rounded-lg py-2 text-center text-[13px] font-semibold ${f.best ? "bg-[#0f2a4d] text-white" : "bg-[#eef1f6] text-[#0f2a4d]"}`}>JOD {f.p}</p>
+                  <p className={`mt-3 rounded-lg py-2 text-center text-[13px] font-semibold ${f.best ? "bg-[#1f1f1f] text-white" : "bg-[#eef1f6] text-[#1f1f1f]"}`}>JOD {f.p}</p>
                 </div>
               ))}
             </div>

@@ -107,7 +107,7 @@ function draw(paths: SVGElement[], p: number) {
 
 /**
  * The four steps as one pinned scroll (after 21st.dev "Scroll Reveal Content
- * A"). On a wide screen the list and a navy panel stay on screen while the
+ * A"). On a wide screen the list and a graphite panel stay on screen while the
  * track scrolls past: each step's line fills in turn, its text lights up, and
  * the panel crossfades to that step's drawing, which draws itself in.
  * Phones and tablets: no pin; each step carries its own drawing and fills as

@@ -8,6 +8,11 @@ import { BodyTooLarge, clientIp, forbiddenOrigin, rateLimited, readJson, sameOri
 export const runtime = "nodejs";
 
 export async function POST(req: Request) {
+  // The form posts to Netlify Forms instead (NEXT_PUBLIC_LEADS_VIA): with no
+  // API behind the site, this endpoint has nothing to do, so it isn't there.
+  if (process.env.NEXT_PUBLIC_LEADS_VIA === "netlify-forms" && !MOCKS_ENABLED) {
+    return NextResponse.json({ error: { code: "not_found", message: "Not found." } }, { status: 404 });
+  }
   if (!sameOrigin(req)) return forbiddenOrigin();
 
   const ip = clientIp(req);

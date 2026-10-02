@@ -63,7 +63,7 @@ export const PORTFOLIO: PortfolioEntry[] = [
     slug: "place-it-decor",
     name: { ar: "Place It Decor", en: "Place It Decor" },
     kind: "website",
-    cover: { bg: "#0d1b2a", ink: "light" },
+    cover: { bg: "#1c1c1c", ink: "light" },
     shot: "/assets/portfolio/placeit.jpg",
     url: "https://placeitdecor.com",
   },
@@ -85,7 +85,7 @@ export const PORTFOLIO: PortfolioEntry[] = [
     slug: "jo-ride",
     name: { ar: "Jo Ride", en: "Jo Ride" },
     kind: "app",
-    cover: { bg: "#0d1b2a", ink: "light", icon: "car" },
+    cover: { bg: "#1c1c1c", ink: "light", icon: "car" },
     summary: { ar: "تطبيق لتأجير السيارات.", en: "A car rental app." },
   },
 ];

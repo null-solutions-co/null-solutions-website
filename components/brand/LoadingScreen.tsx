@@ -1,12 +1,19 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
 /** Long enough for the mark to draw itself once, even on a fast connection. */
 const MIN_MS = 1500;
 /** If something never finishes loading, don't hold the visitor hostage. */
 const MAX_MS = 9000;
+
+/**
+ * Set once the cover has been shown. The module outlives client navigations,
+ * so switching language (which re-renders the root layout and mounts this
+ * again) doesn't bring the cover back.
+ */
+let shown = false;
 
 function pageLoaded(): Promise<void> {
   const load = new Promise<void>((resolve) => {
@@ -18,22 +25,25 @@ function pageLoaded(): Promise<void> {
 }
 
 /**
- * The first thing a visitor sees: the NULL mark drawing itself on navy — the
+ * The first thing a visitor sees: the NULL mark drawing itself on black — the
  * ring, then the slash through it, then the name — until every image, font and
  * script on the page has loaded. Then it lifts and the site is there, at the
  * top, ready.
  *
  * Rendered on the server so it covers the page before any JavaScript runs.
  * It shows once per full page load; moving between pages inside the site
- * doesn't bring it back. A CSS failsafe (globals.css) hides it even if the
+ * doesn't bring it back, and neither does switching language. A CSS failsafe (globals.css) hides it even if the
  * script never runs.
  */
 export function LoadingScreen() {
   const ref = useRef<HTMLDivElement>(null);
+  // Read once per mount: true only when an earlier mount already showed the cover.
+  const [again] = useState(() => shown);
 
   useEffect(() => {
     const el = ref.current;
-    if (!el || el.dataset.state === "out") return;
+    if (again || !el || el.dataset.state === "out") return;
+    shown = true;
     const html = document.documentElement;
     html.classList.add("ns-loading");
     window.dispatchEvent(new Event("lenis-stop"));
@@ -65,7 +75,9 @@ export function LoadingScreen() {
       window.clearTimeout(revealTimer);
       window.clearTimeout(hideTimer);
     };
-  }, []);
+  }, [again]);
+
+  if (again) return null;
 
   return (
     <div ref={ref} className="ns-loader" role="status" aria-live="polite" aria-label="Loading NULL Solutions">

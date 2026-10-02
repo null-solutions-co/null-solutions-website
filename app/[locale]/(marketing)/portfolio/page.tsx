@@ -6,11 +6,8 @@ import { EdgeLines } from "@/components/marketing/portfolio/EdgeLines";
 import { Reveal } from "@/components/marketing/Reveal";
 import { Parallax } from "@/components/marketing/portfolio/Parallax";
 import { WorkCover } from "@/components/marketing/portfolio/WorkCover";
-import { SERVICE_ART } from "@/components/marketing/services/ServiceArt";
-import { OfferExplorer } from "@/components/marketing/portfolio/OfferExplorer";
 import { COMPANY } from "@/lib/company";
 import { PORTFOLIO } from "@/lib/portfolio";
-import { SERVICE_CODES } from "@/lib/services";
 import { cn } from "@/lib/utils";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -37,8 +34,8 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
 }
 
 /**
- * The page NULL sends a prospect: who we are, what we offer, who we've built
- * for, and how to reach us — in that order, readable top to bottom on its own.
+ * The page NULL sends a prospect: who we are, who we've built for, and how
+ * to reach us — in that order, readable top to bottom on its own.
  */
 export default async function PortfolioPage({
   params,
@@ -48,7 +45,6 @@ export default async function PortfolioPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("portfolio");
-  const s = await getTranslations("services");
   const nav = await getTranslations("nav");
   const lang = locale === "en" ? "en" : "ar";
   const makes = t.raw("makes") as string[];
@@ -72,7 +68,7 @@ export default async function PortfolioPage({
                   key={m}
                   className="flex items-baseline justify-between gap-6 border-b border-line py-3 first:pt-0"
                 >
-                  <span className="mkt-display text-[clamp(1.9rem,4vw,3.4rem)] leading-[1.1]">{m}</span>
+                  <span className="text-[clamp(1.1rem,1.6vw,1.35rem)] font-medium leading-snug">{m}</span>
                   <span className="font-mono text-xs text-fg-muted" dir="ltr">
                     {String(i + 1).padStart(2, "0")}
                   </span>
@@ -86,35 +82,6 @@ export default async function PortfolioPage({
               {t("aboutLink")} <span className="rtl:rotate-180">→</span>
             </Link>
           </Reveal>
-        </div>
-      </section>
-
-      {/* ---- what we offer ---- */}
-      <section className="relative isolate border-t border-line">
-        <EdgeLines className="top-0 h-[42%]" flip />
-        <div className="mx-auto max-w-[1400px] px-6 py-24 min-[900px]:px-[max(3rem,6vw)] md:py-32">
-          <Reveal className="mb-12 flex flex-wrap items-end justify-between gap-6">
-            <div className="flex flex-col gap-5">
-              <Eyebrow>{t("offerTitle")}</Eyebrow>
-              <h2 className="mkt-display max-w-[20ch] text-[clamp(2.2rem,5vw,4rem)]">{s("title")}</h2>
-            </div>
-            <Link href="/services" className="font-mono text-xs uppercase tracking-[0.16em] text-fg-muted underline-offset-4 hover:text-fg hover:underline">
-              {t("offerLink")} <span className="inline-block rtl:rotate-180">→</span>
-            </Link>
-          </Reveal>
-          <OfferExplorer
-            items={SERVICE_CODES.map((code) => {
-              const Art = SERVICE_ART[code];
-              return {
-                code,
-                name: s(`items.${code}.name`),
-                description: s(`items.${code}.description`),
-                includes: s.raw(`items.${code}.includes`) as string[],
-                art: <Art />,
-              };
-            })}
-            labels={{ includes: s("catalogue.includes"), details: t("offerDetails") }}
-          />
         </div>
       </section>
 
@@ -185,14 +152,14 @@ export default async function PortfolioPage({
         <div className="tone-light mt-14 grid overflow-hidden rounded-3xl bg-white text-fg sm:grid-cols-2 lg:grid-cols-3">
           <a href={`mailto:${COMPANY.email}`} className="group flex flex-col gap-3 p-10 transition-colors hover:bg-black/[0.03]">
             <span className="font-mono text-xs uppercase tracking-[0.18em] text-fg-muted">{t("email")}</span>
-            <span className="text-xl font-semibold group-hover:text-[#0d1b2a]" dir="ltr">
+            <span className="text-xl font-semibold group-hover:text-[#5c5c5c]" dir="ltr">
               {COMPANY.email}
             </span>
           </a>
           {COMPANY.phone ? (
             <a href={`tel:${COMPANY.phone.replace(/\s+/g, "")}`} className="group flex flex-col gap-3 p-10 transition-colors hover:bg-black/[0.03]">
               <span className="font-mono text-xs uppercase tracking-[0.18em] text-fg-muted">{t("phone")}</span>
-              <span className="text-xl font-semibold group-hover:text-[#0d1b2a]" dir="ltr">
+              <span className="text-xl font-semibold group-hover:text-[#5c5c5c]" dir="ltr">
                 {COMPANY.phone}
               </span>
             </a>
@@ -201,7 +168,7 @@ export default async function PortfolioPage({
             <span className="font-mono text-xs uppercase tracking-[0.18em] text-fg-muted">{t("office")}</span>
             <span className="text-xl font-semibold">{t("officeValue")}</span>
           </div>
-          <Link href="/contact" className="group flex items-center justify-between gap-4 bg-[#0d1b2a] p-10 text-white">
+          <Link href="/contact" className="group flex items-center justify-between gap-4 bg-[#1c1c1c] p-10 text-white">
             <span className="text-xl font-semibold">{t("formCta")}</span>
             <span className="text-2xl transition-transform duration-500 group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1">→</span>
           </Link>

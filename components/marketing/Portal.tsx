@@ -1,5 +1,6 @@
 import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
+import { PORTAL_ENABLED } from "@/lib/env";
 import { PortalStage } from "./PortalStage";
 import { PortalDemo } from "./demos/PortalDemo";
 
@@ -23,14 +24,16 @@ export async function Portal() {
           <p className="mx-auto mt-5 max-w-[52ch] text-[clamp(1rem,1.4vw,1.15rem)] text-fg-muted">
             {t("portalBody")}
           </p>
-          <div className="mt-7 flex justify-center">
-            <Link
-              href="/login"
-              className="inline-flex items-center gap-2 rounded-full border border-fg/20 px-6 py-3 font-mono text-xs uppercase tracking-[0.14em] text-fg transition-colors hover:border-fg"
-            >
-              {t("portalCta")} <span className="rtl:rotate-180">→</span>
-            </Link>
-          </div>
+          {PORTAL_ENABLED ? (
+            <div className="mt-7 flex justify-center">
+              <Link
+                href="/login"
+                className="inline-flex items-center gap-2 rounded-full border border-fg/20 px-6 py-3 font-mono text-xs uppercase tracking-[0.14em] text-fg transition-colors hover:border-fg"
+              >
+                {t("portalCta")} <span className="rtl:rotate-180">→</span>
+              </Link>
+            </div>
+          ) : null}
         </>
       }
     />

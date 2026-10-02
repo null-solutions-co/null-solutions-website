@@ -148,7 +148,7 @@ export function DemoDialog({
         <Link
           href="/contact"
           onClick={onClose}
-          className="rounded-full bg-white px-5 py-2 font-mono text-xs uppercase tracking-[0.14em] text-black transition hover:bg-[#0d1b2a] hover:text-white"
+          className="rounded-full bg-white px-5 py-2 font-mono text-xs uppercase tracking-[0.14em] text-black transition hover:bg-[#2a2a2a] hover:text-white"
         >
           {labels.cta}
         </Link>

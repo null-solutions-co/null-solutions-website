@@ -14,6 +14,13 @@ try {
 }
 
 const isProd = process.env.NODE_ENV === "production";
+/**
+ * HTTPS-only rules (upgrade-insecure-requests, HSTS). Off when a production
+ * build is opened from a phone over the local network for testing
+ * (LOCAL_HTTP_PREVIEW=1 at build time): that link is plain http, and the
+ * upgrade made the phone fetch the CSS over https and fail.
+ */
+const httpsOnly = isProd && process.env.LOCAL_HTTP_PREVIEW !== "1";
 
 const csp = [
   "default-src 'self'",
@@ -29,7 +36,7 @@ const csp = [
   "base-uri 'self'",
   "form-action 'self'",
   "object-src 'none'",
-  isProd ? "upgrade-insecure-requests" : "",
+  httpsOnly ? "upgrade-insecure-requests" : "",
 ]
   .filter(Boolean)
   .join("; ");
@@ -54,7 +61,7 @@ const securityHeaders = [
     key: "Permissions-Policy",
     value: "camera=(), microphone=(), geolocation=(), browsing-topics=()",
   },
-  ...(isProd
+  ...(httpsOnly
     ? [
         {
           key: "Strict-Transport-Security",
@@ -90,6 +97,8 @@ const nextConfig: NextConfig = {
     return [
       { source: "/case-studies", destination: "/portfolio", permanent: true },
       { source: "/ar/case-studies", destination: "/ar/portfolio", permanent: true },
+      // Netlify runs the locale middleware first, which turns /case-studies into /en/case-studies
+      { source: "/en/case-studies", destination: "/portfolio", permanent: true },
     ];
   },
 };

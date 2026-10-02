@@ -7,7 +7,7 @@ type Pillar = { title: string; body: string };
 /**
  * Home · who we are. The statement and a link to About, then the four steps
  * (plan, build, secure, support) as a pinned scroll: each step's line fills
- * as you pass it, and a navy panel beside them draws that step in white lines.
+ * as you pass it, and a graphite panel beside them draws that step in white lines.
  */
 export function WhoWeAre({
   eyebrow,

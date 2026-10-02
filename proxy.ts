@@ -2,6 +2,7 @@ import createMiddleware from "next-intl/middleware";
 import { NextResponse, type NextRequest } from "next/server";
 import { routing } from "./i18n/routing";
 import { PORTAL_PATH, SESSION_COOKIE } from "./lib/auth/constants";
+import { PORTAL_ENABLED } from "./lib/env";
 
 // Next 16 renamed `middleware` → `proxy`. This runs next-intl locale routing
 // and then a coarse portal auth guard (presence of the session cookie —
@@ -14,6 +15,14 @@ export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const localePrefix = pathname.match(/^\/ar(?=\/|$)/)?.[0] ?? "";
   const bare = pathname.slice(localePrefix.length) || "/";
+
+  // No portal backend yet (production without an API mode): its pages lead home.
+  if (!PORTAL_ENABLED && (bare === "/login" || bare === "/team" || PORTAL_PATH.test(bare))) {
+    const url = request.nextUrl.clone();
+    url.pathname = localePrefix || "/";
+    url.search = "";
+    return NextResponse.redirect(url);
+  }
 
   if (PORTAL_PATH.test(bare) && !request.cookies.has(SESSION_COOKIE)) {
     const url = request.nextUrl.clone();

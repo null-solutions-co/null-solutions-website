@@ -39,8 +39,8 @@ export function SpaceScene({ quote, author }: { quote: string; author: string })
       <svg aria-hidden="true" viewBox="0 0 400 400" className="absolute left-1/2 top-[47%] w-[min(58%,250px)] -translate-x-1/2 -translate-y-1/2 md:top-[46%] md:w-[min(88%,560px)]" style={{ direction: "ltr" }}>
         <defs>
           <radialGradient id="astro-glow">
-            <stop offset="0%" stopColor="#0d1b2a" stopOpacity="1" />
-            <stop offset="100%" stopColor="#0d1b2a" stopOpacity="0" />
+            <stop offset="0%" stopColor="#1c1c1c" stopOpacity="1" />
+            <stop offset="100%" stopColor="#1c1c1c" stopOpacity="0" />
           </radialGradient>
         </defs>
         <circle cx="200" cy="200" r="190" fill="url(#astro-glow)" />
@@ -65,7 +65,7 @@ export function SpaceScene({ quote, author }: { quote: string; author: string })
             {/* body */}
             <rect x="70" y="102" width="82" height="82" rx="26" fill="#fafafa" />
             <path d="M74 168 H148" stroke="#dcdcdc" strokeWidth="4" />
-            <rect x="93" y="124" width="36" height="24" rx="6" fill="#0d1b2a" />
+            <rect x="93" y="124" width="36" height="24" rx="6" fill="#1c1c1c" />
             <circle className="astro-blink" cx="102" cy="136" r="3" fill="#ffffff" />
             <rect x="110" y="132" width="13" height="3" rx="1.5" fill="#8fa3ba" />
             <rect x="110" y="138" width="9" height="3" rx="1.5" fill="#8fa3ba" />
@@ -81,7 +81,7 @@ export function SpaceScene({ quote, author }: { quote: string; author: string })
             <rect x="58" y="62" width="12" height="24" rx="5" fill="#cfcfcf" />
             <rect x="152" y="62" width="12" height="24" rx="5" fill="#cfcfcf" />
             <circle cx="111" cy="74" r="46" fill="#fafafa" stroke="#dcdcdc" strokeWidth="3" />
-            <rect x="79" y="52" width="64" height="44" rx="22" fill="#0d1b2a" />
+            <rect x="79" y="52" width="64" height="44" rx="22" fill="#1c1c1c" />
             <path d="M89 63 Q97 56 110 56" fill="none" stroke="#ffffff" strokeOpacity="0.75" strokeWidth="4" strokeLinecap="round" />
             <circle cx="133" cy="84" r="3" fill="#ffffff" fillOpacity="0.5" />
             <line x1="140" y1="36" x2="150" y2="18" stroke="#dcdcdc" strokeWidth="3" strokeLinecap="round" />

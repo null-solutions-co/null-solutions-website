@@ -5,7 +5,7 @@ type Shape = "square" | "round" | "cat";
 type Cat = "all" | "optical" | "sun";
 
 const PRODUCTS = [
-  { id: "ravine", name: "Ravine", cat: "optical", shape: "square", material: "Matte titanium", size: "49□20 145", price: 145, colors: [["Onyx", "#1d1d21"], ["Bronze", "#8a6a45"], ["Slate", "#66737f"]] },
+  { id: "ravine", name: "Ravine", cat: "optical", shape: "square", material: "Matte titanium", size: "49□20 145", price: 145, colors: [["Onyx", "#1d1d21"], ["Bronze", "#8a6a45"], ["Slate", "#707070"]] },
   { id: "petra", name: "Petra", cat: "optical", shape: "round", material: "Hand-polished acetate", size: "47□21 145", price: 120, colors: [["Amber", "#8b4a2b"], ["Onyx", "#1d1d21"], ["Honey", "#c8a27a"]] },
   { id: "wadi", name: "Wadi", cat: "sun", shape: "square", material: "Steel, polarised", size: "52□19 145", price: 165, colors: [["Gunmetal", "#3b3b40"], ["Gold", "#b08d57"], ["Olive", "#2d4a3e"]] },
   { id: "dana", name: "Dana", cat: "optical", shape: "cat", material: "Acetate, crystal rose", size: "50□18 140", price: 130, colors: [["Rose", "#c98f8b"], ["Onyx", "#1d1d21"], ["Tortoise", "#7a5237"]] },

@@ -30,10 +30,12 @@ export async function Hero() {
   const before = idx >= 0 ? headline.slice(0, idx) : headline;
   const after = idx >= 0 ? headline.slice(idx + accent.length) : "";
 
-  const devices: FlightDevice[] = FLIGHT.map((f) => ({
+  const devices: FlightDevice[] = FLIGHT.map((f, i) => ({
     code: f.code,
     name: s(`items.${f.code}.name`),
     ...f.device,
+    // phones fly the first five as pictures (see FlightDevice.still)
+    still: i < 5 ? `/hero/flight-${i}.webp` : undefined,
   }));
 
   return (

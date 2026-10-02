@@ -46,19 +46,19 @@ const ORDER = ["S1", "S2", "S4", "S3", "S6", "S7", "S5", "S8", "S9", "S10"] as c
 /**
  * Card grounds from the brand palette (docs/brand-palette.md), alternating
  * light and dark in display order (S1, S2, S4, S3, S6, S7, S5, S8, S9, S10)
- * so the stack reads as a rhythm: Paper/Mist tints against Navy/Graphite.
+ * so the stack reads as a rhythm: light tints against black and graphite.
  */
 const PALETTE: Record<string, { bg: string; fg: string }> = {
   S1: { bg: "#f2f2f2", fg: "#0a0a0a" },
   S2: { bg: "#161616", fg: "#fafafa" },
   S4: { bg: "#e9e9e9", fg: "#0a0a0a" },
-  S3: { bg: "#0d1b2a", fg: "#fafafa" },
+  S3: { bg: "#1c1c1c", fg: "#fafafa" },
   S6: { bg: "#f2f2f2", fg: "#0a0a0a" },
   S7: { bg: "#161616", fg: "#fafafa" },
   S5: { bg: "#e9e9e9", fg: "#0a0a0a" },
   S8: { bg: "#161616", fg: "#fafafa" },
   S9: { bg: "#f2f2f2", fg: "#0a0a0a" },
-  S10: { bg: "#0d1b2a", fg: "#fafafa" },
+  S10: { bg: "#1c1c1c", fg: "#fafafa" },
 };
 
 /**

@@ -1,7 +1,7 @@
 /**
  * NULL's own client portal, as the hero shows it — the one product on the
  * page that is real rather than a concept build. Light ground, the company
- * logo, navy for the one accent. Steps are S0–S9, as the home page calls
+ * logo, black for the one accent. Steps are S0–S9, as the home page calls
  * them. Bilingual because the portal is.
  */
 
@@ -56,7 +56,7 @@ const COPY = {
 
 const FILES = ["design-system-v2.pdf", "sprint-review-11.pdf", "api-contract-1.4.yaml"];
 
-const NAVY = "#0d1b2a";
+const ACCENT = "#0a0a0a";
 const DONE = 5; // S0–S5 done; S6 is current
 
 function Ring({ value }: { value: number }) {
@@ -70,7 +70,7 @@ function Ring({ value }: { value: number }) {
         cy="70"
         r={r}
         fill="none"
-        stroke={NAVY}
+        stroke={ACCENT}
         strokeWidth="9"
         strokeLinecap="round"
         strokeDasharray={`${(c * value) / 100} ${c}`}
@@ -101,12 +101,12 @@ export function PortalDemo({ locale }: { locale: string }) {
               className={
                 i === 0
                   ? "flex items-center justify-between rounded-md bg-[#0b0e14] px-3.5 py-2.5 text-white"
-                  : "flex items-center justify-between rounded-md px-3.5 py-2.5 text-[#586173]"
+                  : "flex items-center justify-between rounded-md px-3.5 py-2.5 text-[#5c5c5c]"
               }
             >
               {item}
               {i === 5 ? (
-                <span className="rounded-full px-2 py-0.5 font-mono text-[11px] text-white" style={{ background: NAVY }}>
+                <span className="rounded-full px-2 py-0.5 font-mono text-[11px] text-white" style={{ background: ACCENT }}>
                   2
                 </span>
               ) : null}
@@ -116,11 +116,11 @@ export function PortalDemo({ locale }: { locale: string }) {
       </aside>
 
       <main className="flex-1 px-9 py-8">
-        <p className="font-mono text-[12px] uppercase tracking-[0.2em] text-[#586173]">{t.hello}</p>
+        <p className="font-mono text-[12px] uppercase tracking-[0.2em] text-[#5c5c5c]">{t.hello}</p>
         <div className="mt-2 flex items-end justify-between">
           <div>
             <h1 className="text-[30px] font-semibold tracking-[-0.01em]">{t.project}</h1>
-            <p className="mt-1 font-mono text-[13px] text-[#586173]">{t.line}</p>
+            <p className="mt-1 font-mono text-[13px] text-[#5c5c5c]">{t.line}</p>
           </div>
           <span className="rounded-full border border-[#e2e6e2] bg-white px-4 py-2 font-mono text-[12px] text-[#15734a]">
             ● {t.onTrack}
@@ -133,35 +133,35 @@ export function PortalDemo({ locale }: { locale: string }) {
               <Ring value={64} />
               <div className="absolute inset-0 flex flex-col items-center justify-center">
                 <span className="font-mono text-[34px] font-semibold tracking-tight">64%</span>
-                <span className="text-[12px] text-[#586173]">{t.complete}</span>
+                <span className="text-[12px] text-[#5c5c5c]">{t.complete}</span>
               </div>
             </div>
             <dl className="flex flex-col gap-4">
               <div>
-                <dt className="text-[12px] text-[#586173]">{t.gates}</dt>
+                <dt className="text-[12px] text-[#5c5c5c]">{t.gates}</dt>
                 <dd className="mt-0.5 text-[15px] font-medium">
                   {t.next} <span className="font-mono">{t.nextGate}</span>
                 </dd>
               </div>
               <div>
-                <dt className="text-[12px] text-[#586173]">{t.eta}</dt>
+                <dt className="text-[12px] text-[#5c5c5c]">{t.eta}</dt>
                 <dd className="mt-0.5 font-mono text-[15px]">{t.etaDate}</dd>
               </div>
             </dl>
           </section>
 
           <section className="flex flex-col justify-between rounded-lg border border-[#e2e6e2] bg-white p-6">
-            <p className="text-[12px] text-[#586173]">{t.balance}</p>
+            <p className="text-[12px] text-[#5c5c5c]">{t.balance}</p>
             <p className="font-mono text-[34px] font-semibold tracking-tight">JOD 4,800</p>
             <div>
               <p className="font-mono text-[13px]">{t.invoice}</p>
-              <p className="text-[12px] text-[#586173]">{t.pay}</p>
+              <p className="text-[12px] text-[#5c5c5c]">{t.pay}</p>
             </div>
           </section>
         </div>
 
         <section className="mt-5 rounded-lg border border-[#e2e6e2] bg-white p-6">
-          <p className="font-mono text-[12px] uppercase tracking-[0.18em] text-[#586173]">{t.gatesTitle}</p>
+          <p className="font-mono text-[12px] uppercase tracking-[0.18em] text-[#5c5c5c]">{t.gatesTitle}</p>
           <div className="mt-5 flex items-start">
             {t.gateNames.map((name, i) => (
               <div key={name} className="flex flex-1 flex-col items-center gap-2">
@@ -173,15 +173,15 @@ export function PortalDemo({ locale }: { locale: string }) {
                       i <= DONE
                         ? { background: "#0b0e14", borderColor: "#0b0e14", color: "#fff" }
                         : i === DONE + 1
-                          ? { background: "#fff", borderColor: NAVY, color: "#0b0e14", boxShadow: `0 0 0 4px ${NAVY}22` }
-                          : { background: "#fff", borderColor: "#e2e6e2", color: "#586173" }
+                          ? { background: "#fff", borderColor: ACCENT, color: "#0b0e14", boxShadow: `0 0 0 4px ${ACCENT}22` }
+                          : { background: "#fff", borderColor: "#e2e6e2", color: "#5c5c5c" }
                     }
                   >
                     S{i}
                   </span>
                   <span className={`h-[3px] flex-1 ${i === 9 ? "opacity-0" : i <= DONE ? "bg-[#0b0e14]" : "bg-[#e2e6e2]"}`} />
                 </div>
-                <span className={`text-[12px] ${i === DONE + 1 ? "font-medium text-[#0b0e14]" : "text-[#586173]"}`}>{name}</span>
+                <span className={`text-[12px] ${i === DONE + 1 ? "font-medium text-[#0b0e14]" : "text-[#5c5c5c]"}`}>{name}</span>
               </div>
             ))}
           </div>
@@ -189,7 +189,7 @@ export function PortalDemo({ locale }: { locale: string }) {
 
         <div className="mt-5 grid grid-cols-[1fr_1.25fr] gap-5">
           <section className="rounded-lg border border-[#e2e6e2] bg-white p-6">
-            <p className="text-[12px] text-[#586173]">{t.files}</p>
+            <p className="text-[12px] text-[#5c5c5c]">{t.files}</p>
             <ul className="mt-3 flex flex-col gap-2.5" dir="ltr">
               {FILES.map((f) => (
                 <li key={f} className="flex items-center gap-3 font-mono text-[13px]">
@@ -201,8 +201,8 @@ export function PortalDemo({ locale }: { locale: string }) {
           </section>
           <section className="rounded-lg border border-[#e2e6e2] bg-white p-6">
             <div className="flex items-center justify-between">
-              <p className="text-[12px] text-[#586173]">{t.update}</p>
-              <p className="font-mono text-[12px] text-[#586173]">{t.updateTime}</p>
+              <p className="text-[12px] text-[#5c5c5c]">{t.update}</p>
+              <p className="font-mono text-[12px] text-[#5c5c5c]">{t.updateTime}</p>
             </div>
             <p className="mt-3 text-[15px] leading-relaxed">{t.updateBody}</p>
           </section>

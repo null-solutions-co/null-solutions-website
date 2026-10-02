@@ -10,8 +10,8 @@ const buttonVariants = cva(
       variant: {
         // ink on paper (the default action — no colour)
         primary: "bg-fg text-ground hover:opacity-90",
-        // the navy fill — the contact form send button
-        hero: "bg-[#0d1b2a] text-white hover:bg-[#0a0a0a]",
+        // the graphite fill — the contact form send button
+        hero: "bg-[#1c1c1c] text-white hover:bg-[#0a0a0a]",
         secondary: "border border-line bg-transparent text-fg hover:bg-surface",
         ghost: "text-fg underline-offset-4 hover:underline",
       },

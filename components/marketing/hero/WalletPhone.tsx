@@ -3,7 +3,7 @@ import { ChevronLeft, Zap, ChevronsRight, Delete } from "lucide-react";
 /** A wallet app mid-transfer: sending JOD 25 over CliQ to an alias. */
 export function WalletPhone() {
   return (
-    <div className="flex h-full w-full flex-col bg-[#15112b] text-white" style={{ fontFamily: "var(--font-sans)" }}>
+    <div className="flex h-full w-full flex-col bg-[#161616] text-white" style={{ fontFamily: "var(--font-sans)" }}>
       <div className="flex h-12 shrink-0 items-end justify-between px-7 pb-1 text-[14px] font-semibold"><span>9:41</span><span className="text-[11px]">5G ▮▮▮</span></div>
 
       <header className="flex items-center justify-between px-5 pt-3">
@@ -30,7 +30,7 @@ export function WalletPhone() {
         <p className="mt-1 text-[12.5px] text-white/50">Available JOD 312.480 · No fee · Arrives instantly</p>
         <div className="mt-5 flex gap-2">
           {["10", "25", "50", "100"].map((v) => (
-            <span key={v} className={`rounded-full px-4 py-1.5 text-[13px] ${v === "25" ? "bg-[#b7a4ff] text-[#15112b]" : "bg-white/10"}`}>{v}</span>
+            <span key={v} className={`rounded-full px-4 py-1.5 text-[13px] ${v === "25" ? "bg-[#b7a4ff] text-[#161616]" : "bg-white/10"}`}>{v}</span>
           ))}
         </div>
         <p className="mt-5 w-[330px] rounded-xl bg-white/[0.06] px-4 py-3 text-[13px] text-white/70">Note: Dinner at Sufra</p>
@@ -42,8 +42,8 @@ export function WalletPhone() {
         ))}
       </div>
 
-      <div className="mx-5 mb-8 mt-2 flex h-14 items-center rounded-full bg-[#b7a4ff] p-1.5 text-[#15112b]">
-        <span className="flex size-11 items-center justify-center rounded-full bg-[#15112b] text-white"><ChevronsRight className="size-5" /></span>
+      <div className="mx-5 mb-8 mt-2 flex h-14 items-center rounded-full bg-[#b7a4ff] p-1.5 text-[#161616]">
+        <span className="flex size-11 items-center justify-center rounded-full bg-[#161616] text-white"><ChevronsRight className="size-5" /></span>
         <span className="flex-1 pr-11 text-center text-[15px] font-semibold">Slide to send JOD 25</span>
       </div>
     </div>

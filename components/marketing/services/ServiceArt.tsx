@@ -86,7 +86,7 @@ function Web() {
 /** S2 · an internal tool: people, roles, switches, and every change logged. */
 function App() {
   const rows = [
-    { c: "#0d1b2a", role: "Admin", on: true },
+    { c: "#0a0a0a", role: "Admin", on: true },
     { c: "#5c5c5c", role: "Editor", on: true },
     { c: "#9a9a9a", role: "Viewer", on: false },
     { c: "#3d3d3d", role: "Editor", on: true },
@@ -139,7 +139,7 @@ function Mobile() {
       <rect x={x + 18} y="100" width="104" height="70" rx="12" fill={C} fillOpacity={dark ? 0.55 : 0.18} />
       {[0, 1, 2].map((k) => (
         <g key={k}>
-          <rect x={x + 18} y={184 + k * 38} width="28" height="28" rx="8" fill={dark ? "#2a3a4c" : SOFT} />
+          <rect x={x + 18} y={184 + k * 38} width="28" height="28" rx="8" fill={dark ? "#3a3a3a" : SOFT} />
           <rect x={x + 54} y={188 + k * 38} width="60" height="7" rx="3.5" fill={dark ? "#ececec" : INK} />
           <rect x={x + 54} y={200 + k * 38} width="40" height="6" rx="3" fill={MUTED} />
         </g>
@@ -253,7 +253,7 @@ function Assess() {
     { k: "High", c: "#d23c3c" },
     { k: "Medium", c: "#f08c00" },
     { k: "Medium", c: "#f08c00" },
-    { k: "Low", c: "#0d1b2a" },
+    { k: "Low", c: "#0a0a0a" },
   ];
   return (
     <Frame>
@@ -376,7 +376,7 @@ function Integrate() {
       {nodes.map((n, i) => (
         <g key={n.k} className="a-rise" style={d(i)}>
           <rect x={n.x - 52} y={n.y - 26} width="104" height="52" rx="14" fill="#fff" stroke={LINE} />
-          <circle cx={n.x - 28} cy={n.y} r="10" fill={["#0d1b2a", "#5c5c5c", "#9a9a9a", "#3d3d3d"][i]} />
+          <circle cx={n.x - 28} cy={n.y} r="10" fill={["#0a0a0a", "#5c5c5c", "#9a9a9a", "#3d3d3d"][i]} />
           <text x={n.x - 12} y={n.y + 5} fontSize="13" fill={INK} style={mono}>
             {n.k}
           </text>
@@ -399,7 +399,7 @@ function Support() {
     { k: "Done", c: "#5c5c5c" },
     { k: "Done", c: "#5c5c5c" },
     { k: "In progress", c: "#3d3d3d" },
-    { k: "New", c: "#0d1b2a" },
+    { k: "New", c: "#0a0a0a" },
   ];
   return (
     <Frame>
@@ -446,7 +446,7 @@ function Support() {
 /** S11 · ERP: finance, stock, sales and people feeding one shared core. */
 function Erp() {
   const mods = [
-    { k: "Finance", x: 40, y: 40, c: "#0d1b2a" },
+    { k: "Finance", x: 40, y: 40, c: "#0a0a0a" },
     { k: "Inventory", x: 300, y: 40, c: "#5c5c5c" },
     { k: "Sales", x: 40, y: 230, c: "#3d3d3d" },
     { k: "HR", x: 300, y: 230, c: "#9a9a9a" },
@@ -509,7 +509,7 @@ export const SERVICE_ART: Record<string, () => ReactNode> = {
  * Accent per service. The brand has one accent, Signal Blue, so every line
  * uses it; the diagrams bring in Deep Teal as their second series.
  */
-const BLUE = "#0d1b2a";
+const BLUE = "#0a0a0a";
 export const SERVICE_ACCENT: Record<string, string> = Object.fromEntries(
   ["S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8", "S9", "S10", "S11"].map((c) => [c, BLUE]),
 );

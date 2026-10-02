@@ -1,5 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
+import { PORTAL_ENABLED } from "@/lib/env";
+import { COMPANY } from "@/lib/company";
 import { BrandLogo } from "@/components/brand/BrandLogo";
 import { LocaleSwitcher } from "./LocaleSwitcher";
 import { HeaderTone } from "./HeaderTone";
@@ -36,18 +38,26 @@ export async function SiteHeader() {
         <nav className="hidden items-center gap-x-4 md:flex">
           <NavLinks items={[...links]} />
           <LocaleSwitcher />
-          <Link
-            href="/login"
-            className="rounded-full px-3 py-1.5 font-mono text-[0.72rem] uppercase tracking-[0.16em] opacity-65 transition-opacity hover:opacity-100"
-          >
-            {t("portal")}
-          </Link>
+          {/* the client portal link shows only once the portal has a backend */}
+          {PORTAL_ENABLED ? (
+            <Link
+              href="/login"
+              className="rounded-full px-3 py-1.5 font-mono text-[0.72rem] uppercase tracking-[0.16em] opacity-65 transition-opacity hover:opacity-100"
+            >
+              {t("portal")}
+            </Link>
+          ) : null}
         </nav>
-        <MobileNav
-          items={[...links, { href: "/login", label: t("portal") }]}
+        {/* phones: the language switch sits in the header, next to the menu */}
+        <div className="flex items-center gap-2 md:hidden">
+          <LocaleSwitcher pill />
+          <MobileNav
+          items={PORTAL_ENABLED ? [...links, { href: "/login", label: t("portal") }] : [...links]}
           labels={{ open: t("menu"), close: t("close") }}
-          extra={<LocaleSwitcher />}
+          extra={<LocaleSwitcher pill />}
+          email={COMPANY.email}
         />
+        </div>
       </div>
     </header>
   );

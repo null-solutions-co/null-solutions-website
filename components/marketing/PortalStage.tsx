@@ -168,7 +168,7 @@ export function PortalStage({
 
         <p
           ref={captionEl}
-          className="absolute bottom-8 start-6 z-10 max-w-[44ch] rounded-lg bg-[#0d1b2a] px-5 py-4 text-sm leading-relaxed text-[#fafafa] shadow-lg md:start-10"
+          className="absolute bottom-8 start-6 z-10 max-w-[44ch] rounded-lg bg-[#1c1c1c] px-5 py-4 text-sm leading-relaxed text-[#fafafa] shadow-lg md:start-10"
           style={{ opacity: 0 }}
         >
           {caption}

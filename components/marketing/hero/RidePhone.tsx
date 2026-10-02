@@ -53,8 +53,8 @@ export function RidePhone() {
         <path d="M70 200 C 100 250, 150 300, 190 312 S 260 300, 300 250 S 330 150, 318 88" fill="none" stroke="#1a73e8" strokeOpacity="0.25" strokeWidth="11" strokeLinecap="round" />
         <path d="M70 200 C 100 250, 150 300, 190 312 S 260 300, 300 250 S 330 150, 318 88" fill="none" stroke="#1a73e8" strokeWidth="5" strokeLinecap="round" />
         <Car x={118} y={262} r={-40} />
-        <Car x={220} y={150} r={80} c="#6b7280" />
-        <Car x={140} y={420} r={10} c="#6b7280" />
+        <Car x={220} y={150} r={80} c="#727272" />
+        <Car x={140} y={420} r={10} c="#727272" />
         {/* pickup + drop-off */}
         <circle cx="70" cy="200" r="11" fill="#111" /><circle cx="70" cy="200" r="4.5" fill="#fff" />
         <rect x="308" y="78" width="20" height="20" rx="4" fill="#111" /><rect x="314.5" y="84.5" width="7" height="7" fill="#fff" />
@@ -80,7 +80,7 @@ export function RidePhone() {
         <div className="mt-3 h-1 overflow-hidden rounded-full bg-black/[0.07]"><div className="h-full w-2/3 rounded-full bg-[#1a73e8]" /></div>
 
         <div className="mt-4 flex items-center gap-3">
-          <span className="relative flex size-12 items-center justify-center rounded-full bg-[#2b3440] text-[15px] font-semibold text-white">
+          <span className="relative flex size-12 items-center justify-center rounded-full bg-[#333333] text-[15px] font-semibold text-white">
             KS<span className="absolute -bottom-1 -right-1 flex items-center gap-0.5 rounded-full bg-white px-1 text-[9px] font-semibold text-black shadow"><Star className="size-2.5 fill-black" />4.9</span>
           </span>
           <div className="min-w-0 flex-1">

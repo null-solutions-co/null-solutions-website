@@ -56,7 +56,7 @@ export function MarketsWeb() {
           <span>USD/JOD <b className="text-white">0.7090</b></span>
           <span>Brent <b className="text-white">81.40</b> <span className="text-[#ef4444]">−0.80%</span></span>
         </div>
-        <span className="ml-auto flex items-center gap-4"><Bell className="size-[18px] text-white/50" /><span className="flex size-8 items-center justify-center rounded-full bg-[#1f2937] text-[12px] font-semibold text-white">OM</span></span>
+        <span className="ml-auto flex items-center gap-4"><Bell className="size-[18px] text-white/50" /><span className="flex size-8 items-center justify-center rounded-full bg-[#262626] text-[12px] font-semibold text-white">OM</span></span>
       </header>
 
       <div className="grid min-h-0 flex-1 grid-cols-[300px_1fr_300px]">

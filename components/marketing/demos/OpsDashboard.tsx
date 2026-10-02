@@ -54,7 +54,7 @@ function Nav({ s, act }: ViewProps<S, A>) {
     { k: null, label: "Reports", Icon: BarChart3 },
   ] as const;
   return (
-    <aside className="flex w-[228px] shrink-0 flex-col border-r border-white/[0.06] bg-[#0a101c] px-4 py-6">
+    <aside className="flex w-[228px] shrink-0 flex-col border-r border-white/[0.06] bg-[#0e0e0e] px-4 py-6">
       <div className="flex items-center gap-2.5 px-2">
         <span className="flex size-8 items-center justify-center rounded-lg bg-gradient-to-br from-[#4f7cff] to-[#2743c9] text-[13px] font-bold">F</span>
         <span className="text-[15px] font-semibold tracking-tight">Fleetline</span>
@@ -97,7 +97,7 @@ function Table({ s, act, rows }: ViewProps<S, A> & { rows: number }) {
               key={f}
               type="button"
               onClick={on(act, { t: "filter", v: f })}
-              className={`rounded-full px-3 py-1 text-[12px] transition ${s.filter === f ? "bg-white text-[#0b1220]" : "text-white/50 hover:text-white"}`}
+              className={`rounded-full px-3 py-1 text-[12px] transition ${s.filter === f ? "bg-white text-[#101010]" : "text-white/50 hover:text-white"}`}
             >
               {f === "all" ? "All" : LABEL[f]}
             </button>
@@ -126,7 +126,7 @@ function View({ s, act }: ViewProps<S, A>) {
   const unit = s.range === "12m" ? "k" : "";
 
   return (
-    <div className="flex h-full w-full overflow-hidden bg-[#0b1220] text-[#e8ecf5]">
+    <div className="flex h-full w-full overflow-hidden bg-[#101010] text-[#e8ecf5]">
       <Nav s={s} act={act} />
       <main className="flex flex-1 flex-col overflow-hidden px-8 py-6">
         <header className="flex items-center justify-between">
@@ -152,7 +152,7 @@ function View({ s, act }: ViewProps<S, A>) {
                 </button>
               ))}
             </div>
-            <span className="flex size-9 items-center justify-center rounded-full bg-gradient-to-br from-amber-300 to-rose-400 text-[13px] font-semibold text-[#0b1220]">LH</span>
+            <span className="flex size-9 items-center justify-center rounded-full bg-gradient-to-br from-amber-300 to-rose-400 text-[13px] font-semibold text-[#101010]">LH</span>
           </div>
         </header>
 

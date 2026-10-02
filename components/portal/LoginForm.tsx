@@ -98,7 +98,7 @@ export function LoginForm() {
               }}
               aria-invalid={error ? true : undefined}
               aria-describedby={`${id}-hint`}
-              className="flex h-12 w-full rounded-lg border border-line bg-white ps-10 pe-3 font-mono text-base tracking-[0.12em] text-fg shadow-sm shadow-black/5 outline-none transition-[border-color,box-shadow] placeholder:text-fg-muted/60 focus-visible:border-[#0d1b2a] focus-visible:shadow-[0_0_0_4px_rgba(13,27,42,0.12)] aria-[invalid=true]:border-danger"
+              className="flex h-12 w-full rounded-lg border border-line bg-white ps-10 pe-3 font-mono text-base tracking-[0.12em] text-fg shadow-sm shadow-black/5 outline-none transition-[border-color,box-shadow] placeholder:text-fg-muted/60 focus-visible:border-[#0a0a0a] focus-visible:shadow-[0_0_0_4px_rgba(0,0,0,0.1)] aria-[invalid=true]:border-danger"
               required
             />
           </div>
@@ -110,7 +110,7 @@ export function LoginForm() {
         <button
           type="submit"
           disabled={busy}
-          className="inline-flex h-12 items-center justify-center gap-2 rounded-lg border border-[#0a0a0a] bg-[#0a0a0a] px-6 text-sm font-medium text-white transition-colors hover:bg-[#0d1b2a] disabled:pointer-events-none disabled:opacity-50"
+          className="inline-flex h-12 items-center justify-center gap-2 rounded-lg border border-[#0a0a0a] bg-[#0a0a0a] px-6 text-sm font-medium text-white transition-colors hover:bg-[#2a2a2a] disabled:pointer-events-none disabled:opacity-50"
         >
           {busy ? t("working") : t("open")}
           {busy ? null : (

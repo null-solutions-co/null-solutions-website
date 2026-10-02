@@ -74,7 +74,7 @@ function ClientPage({ projectId }: { projectId: string }) {
             value={value}
             aria-label={t("progressLabel")}
             onChange={(e) => setDraft(Number(e.target.value))}
-            className="w-full accent-[#0d1b2a]"
+            className="w-full accent-[#0a0a0a]"
           />
           <div className="flex items-center gap-3">
             <Input

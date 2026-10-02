@@ -6,6 +6,7 @@ import { Reveal } from "./Reveal";
 import { compactMotion, onScrollFrame, ramp, reducedMotion } from "@/lib/scroll";
 import type { Camera } from "./demos/Scenes";
 import { DemoDialog, type DemoLabels } from "./DemoDialog";
+import { WorkRail } from "./mobile/WorkRail";
 
 /** Demos and scenes are both authored at this size, then scaled to the stage. */
 const DESIGN_W = 1280;
@@ -180,7 +181,15 @@ export function WorkGrid({
         </Reveal>
       ) : null}
 
-      <div className="relative">
+      <WorkRail
+        items={items}
+        hint={labels.hint}
+        openLabel={labels.open}
+        onOpen={(i, from) => openDemo(items[i], from)}
+      />
+
+      {/* wide screens: the pinned stack (phones get the rail above) */}
+      <div className="relative max-md:hidden">
         {items.map((it, i) => (
           <div
             key={it.code}

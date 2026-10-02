@@ -116,7 +116,7 @@ export function ServiceScroller({ items, labels }: { items: ServiceItem[]; label
 
           <div className="hidden lg:block">
             <div className="sticky top-[max(14vh,calc(50vh-300px))] flex h-[min(72vh,600px)] gap-5">
-              <div className="relative flex-1 overflow-hidden rounded-[32px] border border-line bg-surface shadow-[0_50px_100px_-50px_rgba(13,27,42,0.3)]">
+              <div className="relative flex-1 overflow-hidden rounded-[32px] border border-line bg-surface shadow-[0_50px_100px_-50px_rgba(0,0,0,0.3)]">
                 {items.map((it, i) => (
                   <figure
                     key={it.code}

@@ -351,8 +351,6 @@
     "services": "What we did",
     "whoTitle": "Who we are",
     "whoBody": "A software and security company in Amman. One team covers everything from the first idea to launch and support, and every client follows their project in a private portal.",
-    "offerTitle": "What we offer",
-    "offerLink": "All services in detail",
     "workTitle": "Companies we've built for",
     "types": {
       "website": "Website",
@@ -367,7 +365,6 @@
     "formCta": "Send us a message",
     "social": "Follow us",
     "phone": "Phone",
-    "offerDetails": "See this service in detail",
     "aboutLink": "More about us",
     "makes": [
       "Websites",

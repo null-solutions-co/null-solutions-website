@@ -15,7 +15,7 @@ const SOURCES = [
   { k: "In store (POS)", v: 42, c: "#8b7cf6" },
   { k: "Web checkout", v: 28, c: "#2dd4bf" },
   { k: "B2B / ERP", v: 19, c: "#f59e0b" },
-  { k: "Call centre", v: 11, c: "#64748b" },
+  { k: "Call centre", v: 11, c: "#6b6b6b" },
 ];
 
 type S = { metric: Metric; range: Range; point: number | null };

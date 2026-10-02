@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, type ReactNode } from "react";
+import Image from "next/image";
 import { compactMotion, onTrackFrame, ramp, reducedMotion } from "@/lib/scroll";
 
 export type FlightDevice = {
@@ -10,6 +11,12 @@ export type FlightDevice = {
   node: ReactNode;
   w: number;
   h: number;
+  /**
+   * A picture of the device exactly as `node` renders it (public/hero). Phones
+   * fly the picture instead of the live page: one image per screen is cheap to
+   * move, a full mini-site in 3D is not, and that's what made the phone stutter.
+   */
+  still?: string;
 };
 
 /**
@@ -65,7 +72,7 @@ export function HeroFlight({ copy, devices }: { copy: ReactNode; devices: Flight
     const live = items.current.filter((el, i) => el && !(compact && i >= COMPACT_DEVICES));
     // The camera travels only as deep as the screens it flies through, so a
     // shorter phone flight doesn't end on an empty stretch of sky.
-    const depth = compact ? Math.min(DEPTH, 300 - Math.min(...SLOTS.slice(0, COMPACT_DEVICES).map((s) => s.z))) : DEPTH;
+    const depth = compact ? Math.min(DEPTH, 40 - Math.min(...SLOTS.slice(0, COMPACT_DEVICES).map((s) => s.z))) : DEPTH;
 
     const paint = (p: number) => {
       const W = st.clientWidth;
@@ -101,7 +108,9 @@ export function HeroFlight({ copy, devices }: { copy: ReactNode; devices: Flight
         const s = SLOTS[i % SLOTS.length];
         const z = s.z + cam;
         const appear = Math.min(Math.max((z + 5400) / 1600, 0), 1);
-        const leave = 1 - Math.min(Math.max((z - 160) / 300, 0), 1);
+        // Phones: gone before the screen grows much, so no big pale ghost of a
+        // white page sweeps across (and the picture never has to be blown up).
+        const leave = compact ? 1 - Math.min(Math.max((z + 120) / 260, 0), 1) : 1 - Math.min(Math.max((z - 160) / 300, 0), 1);
         const o = appear * leave;
         el.style.opacity = String(o);
         el.style.visibility = o <= 0.001 ? "hidden" : "visible";
@@ -140,7 +149,14 @@ export function HeroFlight({ copy, devices }: { copy: ReactNode; devices: Flight
               className="absolute left-0 top-0"
               style={{ width: d.w, height: d.h, marginLeft: -d.w / 2, marginTop: -d.h / 2, opacity: 0, visibility: "hidden" }}
             >
-              {d.node}
+              {d.still ? (
+                <>
+                  <div className="h-full w-full max-[899px]:hidden">{d.node}</div>
+                  <Image src={d.still} alt="" width={d.w} height={d.h} unoptimized priority className="h-full w-full [backface-visibility:hidden] min-[900px]:hidden" />
+                </>
+              ) : (
+                d.node
+              )}
             </div>
           ))}
         </div>

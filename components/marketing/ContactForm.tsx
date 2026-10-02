@@ -7,8 +7,7 @@ import { z } from "zod";
 import { useTranslations, useLocale } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Field, Input, Textarea, Select } from "@/components/ui/field";
-import { Logo } from "@/components/brand/Logo";
-import { SERVICE_CODES } from "@/lib/services";
+import { SERVICE_CODES, SERVICE_NAMES_EN } from "@/lib/services";
 
 const CODES = SERVICE_CODES;
 
@@ -39,7 +38,7 @@ function toNetlify(values: FormValues, locale: string) {
     email: values.email,
     company: values.company ?? "",
     phone: values.phone ?? "",
-    service: values.serviceLineCode ?? "",
+    service: values.serviceLineCode ? SERVICE_NAMES_EN[values.serviceLineCode] : "",
     message: values.message,
     locale,
     website: values.website ?? "",
@@ -92,14 +91,30 @@ export function ContactForm() {
   }
 
   if (status === "sent") {
+    // A paper plane takes off and leaves a dotted trail, then a ring and a
+    // tick draw themselves and the words rise in (.cf-sent in globals.css).
     return (
-      <div
-        className="flex flex-col items-start gap-3 rounded-lg border border-line bg-surface p-6"
-        role="status"
-      >
-        <Logo size={32} />
-        <h2 className="text-lg font-semibold">{t("successTitle")}</h2>
-        <p className="text-sm text-fg-muted">{t("successBody")}</p>
+      <div className="cf-sent relative flex flex-col items-center gap-4 overflow-hidden rounded-3xl border border-line bg-surface px-6 py-14 text-center" role="status">
+        <svg viewBox="0 0 320 120" aria-hidden="true" className="cf-sent__sky pointer-events-none absolute inset-x-0 top-0 h-28 w-full" style={{ direction: "ltr" }}>
+          <path className="cf-sent__trail" d="M20 110 C 90 100, 150 70, 300 10" fill="none" stroke="currentColor" strokeWidth="1.5" strokeDasharray="2 6" strokeLinecap="round" pathLength={1} />
+          <g className="cf-sent__plane">
+            <path d="M0 0 L22 9 L0 18 L5 9 Z" fill="currentColor" />
+            <path d="M5 9 L22 9" stroke="var(--surface)" strokeWidth="1.2" />
+          </g>
+        </svg>
+        <div aria-hidden="true" className="relative mt-6 size-16">
+          <span className="cf-sent__pulse absolute inset-0 rounded-full border border-current" />
+          <svg viewBox="0 0 64 64" className="relative size-16">
+            <circle className="cf-sent__ring" cx="32" cy="32" r="29" fill="none" stroke="currentColor" strokeWidth="2.5" pathLength={1} />
+            <path className="cf-sent__tick" d="M20 33 l8 8 l16 -18" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" pathLength={1} />
+          </svg>
+        </div>
+        <h2 className="cf-sent__line text-2xl font-semibold tracking-tight" style={{ animationDelay: "1.15s" }}>
+          {t("successTitle")}
+        </h2>
+        <p className="cf-sent__line max-w-[36ch] text-fg-muted" style={{ animationDelay: "1.3s" }}>
+          {t("successBody")}
+        </p>
       </div>
     );
   }

@@ -37,7 +37,7 @@ export function SaasLanding() {
         </div>
 
         <div className="relative">
-          <div className="rounded-2xl border border-white/10 bg-[#0c1322]/90 p-5 shadow-[0_40px_80px_-30px_rgba(0,0,0,0.8)] backdrop-blur">
+          <div className="rounded-2xl border border-white/10 bg-[#111111]/90 p-5 shadow-[0_40px_80px_-30px_rgba(0,0,0,0.8)] backdrop-blur">
             <div className="flex items-center justify-between text-[12px] text-white/45"><span>POST /v1/payouts</span><span className="rounded bg-[#14d2aa]/15 px-2 py-0.5 text-[#14d2aa]">201 Created</span></div>
             <pre className="mt-3 font-mono text-[12.5px] leading-[1.75] text-white/80">
 {`curl https://api.qanat.io/v1/payouts \\
@@ -48,7 +48,7 @@ export function SaasLanding() {
   -d alias=RANIA.H`}
             </pre>
           </div>
-          <div className="absolute -bottom-24 left-10 right-[-20px] rounded-2xl border border-white/10 bg-[#0f1729] p-4 shadow-2xl">
+          <div className="absolute -bottom-24 left-10 right-[-20px] rounded-2xl border border-white/10 bg-[#121212] p-4 shadow-2xl">
             <div className="flex items-center justify-between"><p className="text-[13px] font-medium">Volume today</p><p className="text-[12px] text-[#14d2aa]">+18.2%</p></div>
             <p className="mt-1 text-[26px] font-semibold tabular-nums">JOD 184,920</p>
             <svg viewBox="0 0 300 60" className="mt-2 h-14 w-full" preserveAspectRatio="none">

@@ -40,6 +40,9 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
+  // The site is already in Arabic and English: stop Chrome offering to
+  // translate it (its popup sat over the header and swallowed the first tap).
+  other: { google: "notranslate" },
   title: {
     default: "NULL Solutions",
     template: "%s · NULL Solutions",
@@ -78,6 +81,7 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
+      translate="no"
       dir={locale === "ar" ? "rtl" : "ltr"}
       className={`${outfit.variable} ${tajawal.variable} ${plexMono.variable}`}
     >
