@@ -2,6 +2,9 @@
  * NULL's public contact details, used by the portfolio and contact pages.
  * Only real values go here. An empty field is simply not shown, so the social
  * accounts and phone can be filled in whenever the founder sends them.
+ *
+ * With NULL_CMS_URL set, server components read these from NULL Platform
+ * (getCompany in lib/cms.ts) and this is the fallback.
  */
 export const COMPANY = {
   email: "info@null-solutions.com",

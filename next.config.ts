@@ -13,6 +13,18 @@ try {
   /* NEXT_PUBLIC_API_URL not set / not a URL */
 }
 
+/**
+ * NULL Platform (NULL_CMS_URL): texts, portfolio and contact details are read
+ * from it server-side; images uploaded there come back as absolute URLs on it,
+ * so the browser may load images from that origin.
+ */
+let cms: URL | null = null;
+try {
+  cms = process.env.NULL_CMS_URL ? new URL(process.env.NULL_CMS_URL) : null;
+} catch {
+  /* NULL_CMS_URL not a URL */
+}
+
 const isProd = process.env.NODE_ENV === "production";
 /**
  * HTTPS-only rules (upgrade-insecure-requests, HSTS). Off when a production
@@ -26,7 +38,7 @@ const csp = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline'" + (isProd ? "" : " 'unsafe-eval'"),
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob:",
+  `img-src 'self' data: blob: ${cms?.origin ?? ""}`.trim(),
   "font-src 'self'",
   `connect-src 'self' ${apiOrigin} ${apiWs}`.trim(),
   "worker-src 'self' blob:",
@@ -84,6 +96,16 @@ const nextConfig: NextConfig = {
     dangerouslyAllowSVG: true,
     contentDispositionType: "attachment",
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    remotePatterns: cms
+      ? [
+          {
+            protocol: cms.protocol === "https:" ? "https" : "http",
+            hostname: cms.hostname,
+            port: cms.port,
+            pathname: "/api/media/**",
+          },
+        ]
+      : [],
   },
   async headers() {
     return [

@@ -1,7 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { PORTAL_ENABLED } from "@/lib/env";
-import { COMPANY } from "@/lib/company";
+import { getCompany } from "@/lib/cms";
 import { BrandLogo } from "@/components/brand/BrandLogo";
 import { LocaleSwitcher } from "./LocaleSwitcher";
 import { HeaderTone } from "./HeaderTone";
@@ -9,7 +9,7 @@ import { MobileNav } from "./MobileNav";
 import { NavLinks } from "./NavLinks";
 
 export async function SiteHeader() {
-  const t = await getTranslations("nav");
+  const [t, company] = await Promise.all([getTranslations("nav"), getCompany()]);
 
   const links = [
     { href: "/", label: t("home") },
@@ -55,7 +55,7 @@ export async function SiteHeader() {
           items={PORTAL_ENABLED ? [...links, { href: "/login", label: t("portal") }] : [...links]}
           labels={{ open: t("menu"), close: t("close") }}
           extra={<LocaleSwitcher pill />}
-          email={COMPANY.email}
+          email={company.email}
         />
         </div>
       </div>

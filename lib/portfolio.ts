@@ -5,6 +5,9 @@
  * simply doesn't show it (Gate 0 #4: nothing invented). To add a client: an
  * entry below, plus optionally their logo in public/assets/partners/ and a
  * 1440×900 screenshot of the live site in public/assets/portfolio/.
+ *
+ * With NULL_CMS_URL set, the page reads the list edited in NULL Platform
+ * (getPortfolio in lib/cms.ts) and this is the fallback.
  */
 
 type Localized = { ar: string; en: string };

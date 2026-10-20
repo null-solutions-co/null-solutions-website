@@ -1,5 +1,5 @@
 import { Reveal } from "@/components/marketing/Reveal";
-import { COMPANY } from "@/lib/company";
+import type { Company } from "@/lib/cms-parse";
 
 /** Latin text split into letters that roll up to a copy of themselves on hover. */
 function Roll({ text }: { text: string }) {
@@ -40,17 +40,28 @@ function MailIcon() {
  * after another; on hover the letters roll over, the icon tile fills (the
  * Instagram gradient, or white for mail) and the arrow turns.
  */
-export function FooterContact({ follow, instagram, email }: { follow: string; instagram: string; email: string }) {
+export function FooterContact({
+  follow,
+  instagram,
+  email,
+  company,
+}: {
+  follow: string;
+  instagram: string;
+  email: string;
+  /** Contact details (lib/cms getCompany: the platform, else the bundled COMPANY). */
+  company: Company;
+}) {
   const rows = [
     {
-      href: COMPANY.instagram.href,
+      href: company.instagram.href,
       label: instagram,
-      text: `@${COMPANY.instagram.handle}`,
+      text: `@${company.instagram.handle}`,
       Icon: InstagramIcon,
       tile: "ft-tile-ig",
       external: true,
     },
-    { href: `mailto:${COMPANY.email}`, label: email, text: COMPANY.email, Icon: MailIcon, tile: "ft-tile-mail", external: false },
+    { href: `mailto:${company.email}`, label: email, text: company.email, Icon: MailIcon, tile: "ft-tile-mail", external: false },
   ];
 
   return (
