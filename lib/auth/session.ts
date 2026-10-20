@@ -104,7 +104,16 @@ export async function writeSession(data: Omit<SessionData, "exp">): Promise<void
 
 export async function clearSession(): Promise<void> {
   const store = await cookies();
-  store.delete(SESSION_COOKIE);
+  // Expire it with the attributes it was set with: the browser ignores a
+  // `__Host-` cookie (production) sent without `Secure`, so a bare delete
+  // would leave the visitor signed in.
+  store.set(SESSION_COOKIE, "", {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    path: "/",
+    maxAge: 0,
+  });
 }
 
 /** The shape returned by GET /api/auth/session (the `sessionUser` schema). */

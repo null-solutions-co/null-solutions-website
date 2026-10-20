@@ -16,6 +16,12 @@ export async function POST(req: Request) {
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ refreshToken: session.refreshToken }),
       }).catch(() => undefined);
+    } else if (session?.accessToken) {
+      // No refresh token (NULL Platform issues none): revoke the access token itself.
+      await upstream("/auth/logout", {
+        method: "POST",
+        headers: { authorization: `Bearer ${session.accessToken}` },
+      }).catch(() => undefined);
     }
   }
   await clearSession();

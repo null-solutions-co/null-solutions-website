@@ -9,10 +9,20 @@ import { useSession } from "@/hooks/useSession";
 import { useToast } from "./Toaster";
 
 /**
- * Keeps the portal live. In live mode it opens the SignalR connection and maps
- * hub events onto the query cache. In mock mode there is no hub, so it polls the
- * mock store's unread count and behaves the same way when it goes up — an admin
- * advancing a gate in one tab shows up live in the client's tab.
+ * SignalR only when asked for: NULL Platform (the live backend) has no hub, so
+ * by default the portal polls there too. NEXT_PUBLIC_REALTIME=signalr switches
+ * the hub connection on for a backend that serves /hubs/notifications.
+ */
+const USE_HUB = !MOCKS_ENABLED && process.env.NEXT_PUBLIC_REALTIME === "signalr";
+/** Mock store is in-process and cheap to ask; the platform is asked less often. */
+const POLL_MS = MOCKS_ENABLED ? 8000 : 15_000;
+
+/**
+ * Keeps the portal live. By default it polls the unread-notification count
+ * and, when it goes up, refreshes the cached data and shows a toast — an admin
+ * advancing a gate in one tab shows up in the client's tab. With
+ * NEXT_PUBLIC_REALTIME=signalr (live mode) it opens the SignalR connection
+ * instead and maps hub events onto the query cache.
  */
 export function RealtimeProvider({ children }: { children: React.ReactNode }) {
   const qc = useQueryClient();
@@ -24,10 +34,12 @@ export function RealtimeProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (!active) return;
 
-    if (MOCKS_ENABLED) {
+    if (!USE_HUB) {
       let last: number | null = null;
-      const check = () =>
-        api
+      const check = () => {
+        // a background tab doesn't need to ask; it catches up on the next tick in front
+        if (document.visibilityState === "hidden") return;
+        return api
           .unreadCount()
           .then(({ count }) => {
             if (last !== null && count > last) {
@@ -39,8 +51,9 @@ export function RealtimeProvider({ children }: { children: React.ReactNode }) {
             last = count;
           })
           .catch(() => {});
+      };
       check();
-      const timer = window.setInterval(check, 8000);
+      const timer = window.setInterval(check, POLL_MS);
       return () => window.clearInterval(timer);
     }
 
