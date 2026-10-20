@@ -6,8 +6,7 @@ import { EdgeLines } from "@/components/marketing/portfolio/EdgeLines";
 import { Reveal } from "@/components/marketing/Reveal";
 import { Parallax } from "@/components/marketing/portfolio/Parallax";
 import { WorkCover } from "@/components/marketing/portfolio/WorkCover";
-import { COMPANY } from "@/lib/company";
-import { PORTFOLIO } from "@/lib/portfolio";
+import { getCompany, getPortfolio } from "@/lib/cms";
 import { cn } from "@/lib/utils";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -48,6 +47,7 @@ export default async function PortfolioPage({
   const nav = await getTranslations("nav");
   const lang = locale === "en" ? "en" : "ar";
   const makes = t.raw("makes") as string[];
+  const [portfolio, company] = await Promise.all([getPortfolio(), getCompany()]);
 
   return (
     <div className="relative isolate overflow-x-clip">
@@ -93,12 +93,12 @@ export default async function PortfolioPage({
               <Eyebrow>{t("eyebrow")}</Eyebrow>
               <h2 className="mkt-display text-[clamp(2.2rem,5vw,4rem)]">{t("workTitle")}</h2>
             </div>
-            <span className="font-mono text-xs uppercase tracking-[0.2em] text-fg-muted">{t("count", { count: PORTFOLIO.length })}</span>
+            <span className="font-mono text-xs uppercase tracking-[0.2em] text-fg-muted">{t("count", { count: portfolio.length })}</span>
           </Reveal>
 
           <Parallax>
             <ul className="grid gap-x-10 gap-y-20 pt-14 md:grid-cols-12">
-              {PORTFOLIO.map((e, i) => {
+              {portfolio.map((e, i) => {
                 const name = e.name[lang];
                 const body = (
                   <>
@@ -123,7 +123,7 @@ export default async function PortfolioPage({
                   </>
                 );
                 return (
-                  <li key={e.slug} className={span(i, PORTFOLIO.length)}>
+                  <li key={e.slug} className={span(i, portfolio.length)}>
                     <Reveal delay={(i % 2) * 120}>
                       {e.url ? (
                         <a href={e.url} target="_blank" rel="noopener noreferrer" className="group block">
@@ -150,17 +150,17 @@ export default async function PortfolioPage({
           <p className="max-w-[46ch] text-lg text-fg-muted">{t("contactBody")}</p>
         </Reveal>
         <div className="tone-light mt-14 grid overflow-hidden rounded-3xl bg-white text-fg sm:grid-cols-2 lg:grid-cols-3">
-          <a href={`mailto:${COMPANY.email}`} className="group flex flex-col gap-3 p-10 transition-colors hover:bg-black/[0.03]">
+          <a href={`mailto:${company.email}`} className="group flex flex-col gap-3 p-10 transition-colors hover:bg-black/[0.03]">
             <span className="font-mono text-xs uppercase tracking-[0.18em] text-fg-muted">{t("email")}</span>
             <span className="text-xl font-semibold group-hover:text-[#5c5c5c]" dir="ltr">
-              {COMPANY.email}
+              {company.email}
             </span>
           </a>
-          {COMPANY.phone ? (
-            <a href={`tel:${COMPANY.phone.replace(/\s+/g, "")}`} className="group flex flex-col gap-3 p-10 transition-colors hover:bg-black/[0.03]">
+          {company.phone ? (
+            <a href={`tel:${company.phone.replace(/\s+/g, "")}`} className="group flex flex-col gap-3 p-10 transition-colors hover:bg-black/[0.03]">
               <span className="font-mono text-xs uppercase tracking-[0.18em] text-fg-muted">{t("phone")}</span>
               <span className="text-xl font-semibold group-hover:text-[#5c5c5c]" dir="ltr">
-                {COMPANY.phone}
+                {company.phone}
               </span>
             </a>
           ) : null}
@@ -173,9 +173,9 @@ export default async function PortfolioPage({
             <span className="text-2xl transition-transform duration-500 group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1">→</span>
           </Link>
         </div>
-        {COMPANY.social.length ? (
+        {company.social.length ? (
           <ul className="mt-8 flex flex-wrap gap-3">
-            {COMPANY.social.map((so) => (
+            {company.social.map((so) => (
               <li key={so.href}>
                 <a href={so.href} target="_blank" rel="noopener noreferrer" className="rounded-full border border-line px-5 py-2.5 font-mono text-xs uppercase tracking-[0.16em] hover:border-fg">
                   {so.label} ↗

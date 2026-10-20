@@ -3,10 +3,12 @@ import { Link } from "@/i18n/navigation";
 import { BrandLogo } from "@/components/brand/BrandLogo";
 import { FooterContact } from "./FooterContact";
 import { PORTAL_ENABLED } from "@/lib/env";
+import { getCompany } from "@/lib/cms";
 
 export async function SiteFooter() {
   const nav = await getTranslations("nav");
   const f = await getTranslations("footer");
+  const company = await getCompany();
   const year = new Date().getFullYear();
 
   const links = [
@@ -21,7 +23,7 @@ export async function SiteFooter() {
   return (
     <footer className="border-t border-line">
       <div className="mx-auto flex max-w-6xl flex-col gap-12 px-6 py-16">
-        <FooterContact follow={f("follow")} instagram={f("instagram")} email={f("email")} />
+        <FooterContact follow={f("follow")} instagram={f("instagram")} email={f("email")} company={company} />
         <div className="flex flex-wrap items-start justify-between gap-8">
           <Link href="/" aria-label="NULL Solutions">
             <BrandLogo className="h-7 w-auto brightness-0 invert" />

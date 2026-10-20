@@ -32,6 +32,14 @@ function CoverIcon({ icon }: { icon: "coffee" | "car" }) {
     </svg>
   );
 }
+/**
+ * Images uploaded in NULL Platform come back as absolute URLs on the platform
+ * (immutable, cross-origin allowed). The browser loads those directly: the
+ * image optimizer would refuse a platform on a private/local address, and the
+ * platform already serves them sized and cached.
+ */
+const isRemote = (src: string) => /^https?:\/\//i.test(src);
+
 export function WorkCover({ e, name, index }: { e: PortfolioEntry; name: string; index: number }) {
   const light = e.cover.ink === "light";
   const ink = light ? "text-white" : "text-[#111]";
@@ -52,7 +60,7 @@ export function WorkCover({ e, name, index }: { e: PortfolioEntry; name: string;
               </span>
             ) : null}
           </div>
-          <Image src={e.shot} alt={name} width={1440} height={900} className="pf-shot h-auto w-full" sizes="(min-width: 768px) 55vw, 100vw" />
+          <Image src={e.shot} alt={name} width={1440} height={900} className="pf-shot h-auto w-full" sizes="(min-width: 768px) 55vw, 100vw" unoptimized={isRemote(e.shot)} />
         </div>
       ) : e.logo ? (
         <>
@@ -63,10 +71,11 @@ export function WorkCover({ e, name, index }: { e: PortfolioEntry; name: string;
               width={e.cover.art.w}
               height={e.cover.art.h}
               className="pf-art absolute bottom-[-6%] end-[4%] h-[92%] w-auto opacity-40"
+              unoptimized={isRemote(e.cover.art.src)}
             />
           ) : null}
           <div className="absolute inset-0 flex items-center justify-center">
-            <Image src={e.logo.src} alt={name} width={e.logo.w} height={e.logo.h} className="pf-logo h-[44%] w-auto drop-shadow-[0_18px_30px_rgba(0,0,0,0.18)]" />
+            <Image src={e.logo.src} alt={name} width={e.logo.w} height={e.logo.h} className="pf-logo h-[44%] w-auto drop-shadow-[0_18px_30px_rgba(0,0,0,0.18)]" unoptimized={isRemote(e.logo.src)} />
           </div>
         </>
       ) : (
